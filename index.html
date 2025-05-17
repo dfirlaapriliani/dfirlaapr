@@ -11,11 +11,24 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap" rel="stylesheet" />
 
     <style>
         body {
             font-family: 'Poppins', sans-serif;
+            background-color: #0f0f18 !important;
+            background-image: linear-gradient(rgba(50, 60, 100, 0.2) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(50, 60, 100, 0.2) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            top: 0;
+            left: 0;
         }
 
         .gradient-text {
@@ -25,10 +38,6 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             animation: shimmer 4s ease-in-out infinite;
-        }
-
-        html {
-            scroll-behavior: smooth;
         }
 
         @keyframes shimmer {
@@ -91,13 +100,13 @@
     </style>
 </head>
 
-<body class="bg-[#0B1120] text-white font-bold">
+<body class="text-white font-bold relative overflow-x-hidden">
+    <div id="particles-js"></div>
 
-    <!-- NAVBAR -->
-    <nav class="sticky top-4 z-50 w-full flex justify-center" data-aos="fade-down" data-aos-duration="1000">
+    <!--navbar-->
+    <nav class="sticky top-0 z-50 w-full flex justify-center pt-6" data-aos="fade-down" data-aos-duration="1000">
         <div
-            class="flex items-center justify-between w-[90%] max-w-6xl px-6 py-3 bg-[#060b23] rounded-full shadow-lg border border-blue-500 shadow-purple-800/50">
-            <!-- Logo -->
+            class="flex items-center justify-between w-[90%] max-w-6xl px-6 py-3 rounded-full shadow-lg backdrop-blur-md bg-gradient-to-r from-[#0f0f18cc] via-[#1c1f3bcc] to-[#0f0f18cc] border border-indigo-500">
             <div class="text-xl font-bold gradient-text">D FIRLA APRILIANI</div>
 
             <!-- Desktop Menu -->
@@ -122,7 +131,7 @@
 
     <!-- MOBILE DRAWER -->
     <div id="drawer"
-        class="fixed top-0 left-0 h-full w-64 bg-[#0B1120] border-r border-blue-500 shadow-3d transform -translate-x-full transition-transform duration-300 z-[999] md:hidden">
+        class="fixed top-0 left-0 h-full w-64 backdrop-blur-md bg-gradient-to-br from-[#0f0f18cc] via-[#1c1f3bcc] to-[#0f0f18cc] border-r border-blue-500 shadow-3d transform -translate-x-full transition-transform duration-300 z-[999] md:hidden rounded-r-2xl">
         <div class="flex justify-between items-center p-4 border-b border-blue-500">
             <div class="gradient-text text-lg font-bold">Menu</div>
             <button id="close-drawer" class="text-white">
@@ -147,11 +156,31 @@
     <!-- AUDIO -->
     <audio id="nav-sound" src="https://www.myinstants.com/media/sounds/bruh.mp3"></audio>
 
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
     <script>
         AOS.init({ once: true });
 
-        const menuToggle = document.getElementById("menu-toggle");
+        particlesJS('particles-js', {
+            particles: {
+                number: { value: 120 },
+                color: { value: '#7c3aed' },
+                shape: { type: 'circle' },
+                opacity: { value: 0.4 },
+                size: { value: 3 },
+                line_linked: {
+                    enable: true,
+                    distance: 160,
+                    color: '#7c3aed',
+                    opacity: 0.4,
+                    width: 1
+                },
+                move: { enable: true, speed: 2 }
+            }
+        });
+
         const drawer = document.getElementById("drawer");
+        const menuToggle = document.getElementById("menu-toggle");
         const closeDrawer = document.getElementById("close-drawer");
         const navLinks = document.querySelectorAll(".nav-link");
         const navSound = document.getElementById("nav-sound");
@@ -180,17 +209,16 @@
             });
         });
 
-        soundToggle?.addEventListener("click", () => {
+        const toggleSound = () => {
             isMuted = !isMuted;
             soundIcon.classList.toggle("fa-volume-up", !isMuted);
             soundIcon.classList.toggle("fa-volume-mute", isMuted);
-        });
-
-        soundToggleMobile?.addEventListener("click", () => {
-            isMuted = !isMuted;
             soundIconMobile.classList.toggle("fa-volume-up", !isMuted);
             soundIconMobile.classList.toggle("fa-volume-mute", isMuted);
-        });
+        };
+
+        soundToggle?.addEventListener("click", toggleSound);
+        soundToggleMobile?.addEventListener("click", toggleSound);
 
         function highlightActiveLink() {
             const sections = ["home", "about", "project", "certificate", "skill", "contact"];
@@ -503,11 +531,11 @@
                 <div class="max-w-6xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
                     <!-- Project 1 -->
                     <div class="rounded-xl overflow-hidden border border-white/10 
-                bg-gradient-to-br from-[#1a2238] via-[#302244] to-[#1a1a2e]
-                backdrop-blur-md 
-                shadow-[0_6px_18px_rgba(65,60,100,0.3)] 
-                hover:shadow-[0_10px_25px_rgba(110,90,160,0.4)]
-                transition-all duration-300 project-item" data-aos="zoom-in-up">
+                    bg-gradient-to-br from-[#1a2238] via-[#302244] to-[#1a1a2e]
+                    backdrop-blur-md 
+                    shadow-[0_6px_18px_rgba(65,60,100,0.3)] 
+                    hover:shadow-[0_10px_25px_rgba(110,90,160,0.4)]
+                    transition-all duration-300 project-item" data-aos="zoom-in-up">
                         <img src="kema.png" alt="Calculator Cinta" class="w-full h-36 object-cover cursor-pointer"
                             onclick="openModal('kema.png', 'Calculator Cinta', 'Sebuah website interaktif untuk menghitung kecocokan cinta berdasarkan nama. Menampilkan animasi dan hasil yang shareable.')" />
                         <div class="p-4">
@@ -515,16 +543,16 @@
                             <p class="text-sm text-gray-300">Kedai makanan digital</p>
                             <div class="flex flex-wrap gap-2 mt-3">
                                 <a href="https://kedaimakananku.netlify.app/" target="_blank" class="flex items-center justify-center gap-2 px-3 py-1.5 text-sm rounded-md 
-                      min-w-[120px]
-                      border border-purple-400 text-purple-300 
-                      hover:bg-purple-500 hover:text-white transition duration-200">
+                          min-w-[120px]
+                          border border-purple-400 text-purple-300 
+                          hover:bg-purple-500 hover:text-white transition duration-200">
                                     <i class="fas fa-play"></i>
                                     Demo
                                 </a>
                                 <a href="https://github.com/dfirlaapriliani/kedai-makananku.git" target="_blank" class="flex items-center justify-center gap-2 px-3 py-1.5 text-sm rounded-md 
-                      min-w-[120px]
-                      border border-purple-400 text-purple-300 
-                      hover:bg-purple-500 hover:text-white transition duration-200">
+                          min-w-[120px]
+                          border border-purple-400 text-purple-300 
+                          hover:bg-purple-500 hover:text-white transition duration-200">
                                     <i class="fab fa-github"></i>
                                     GitHub
                                 </a>
@@ -535,11 +563,11 @@
 
                     <!-- Project 1 -->
                     <div class="rounded-xl overflow-hidden border border-white/10 
-                                    bg-gradient-to-br from-[#1a2238] via-[#302244] to-[#1a1a2e]
-                                    backdrop-blur-md 
-                                    shadow-[0_6px_18px_rgba(65,60,100,0.3)] 
-                                    hover:shadow-[0_10px_25px_rgba(110,90,160,0.4)]
-                                    transition-all duration-300 project-item" data-aos="zoom-in-up">
+                                        bg-gradient-to-br from-[#1a2238] via-[#302244] to-[#1a1a2e]
+                                        backdrop-blur-md 
+                                        shadow-[0_6px_18px_rgba(65,60,100,0.3)] 
+                                        hover:shadow-[0_10px_25px_rgba(110,90,160,0.4)]
+                                        transition-all duration-300 project-item" data-aos="zoom-in-up">
                         <img src="vier.png" alt="Calculator Cinta" class="w-full h-36 object-cover cursor-pointer"
                             onclick="openModal('vier.png', 'Calculator Cinta', 'Sebuah website interaktif untuk menghitung kecocokan cinta berdasarkan nama. Menampilkan animasi dan hasil yang shareable.')" />
                         <div class="p-4">
@@ -548,17 +576,17 @@
                             <div class="flex flex-wrap gap-2 mt-3">
                                 <a href="https://drive.google.com/file/d/1vtwFA3J36bEb8apSkD25SjVyJMmeg1sq/view?usp=sharing"
                                     target="_blank" class="flex items-center justify-center gap-2 px-3 py-1.5 text-sm rounded-md 
-                                          min-w-[120px]
-                                          border border-purple-400 text-purple-300 
-                                          hover:bg-purple-500 hover:text-white transition duration-200">
+                                              min-w-[120px]
+                                              border border-purple-400 text-purple-300 
+                                              hover:bg-purple-500 hover:text-white transition duration-200">
                                     <i class="fas fa-play"></i>
                                     Demo
                                 </a>
                                 <a href="https://github.com/dfirlaapriliani/SISTEM_JASA_ONLINE.git" target="_blank"
                                     class="flex items-center justify-center gap-2 px-3 py-1.5 text-sm rounded-md 
-                                          min-w-[120px]
-                                          border border-purple-400 text-purple-300 
-                                          hover:bg-purple-500 hover:text-white transition duration-200">
+                                              min-w-[120px]
+                                              border border-purple-400 text-purple-300 
+                                              hover:bg-purple-500 hover:text-white transition duration-200">
                                     <i class="fab fa-github"></i>
                                     GitHub
                                 </a>
@@ -568,11 +596,11 @@
 
                     <!-- Project 1 -->
                     <div class="rounded-xl overflow-hidden border border-white/10 
-                                                        bg-gradient-to-br from-[#1a2238] via-[#302244] to-[#1a1a2e]
-                                                        backdrop-blur-md 
-                                                        shadow-[0_6px_18px_rgba(65,60,100,0.3)] 
-                                                        hover:shadow-[0_10px_25px_rgba(110,90,160,0.4)]
-                                                        transition-all duration-300 project-item"
+                                                            bg-gradient-to-br from-[#1a2238] via-[#302244] to-[#1a1a2e]
+                                                            backdrop-blur-md 
+                                                            shadow-[0_6px_18px_rgba(65,60,100,0.3)] 
+                                                            hover:shadow-[0_10px_25px_rgba(110,90,160,0.4)]
+                                                            transition-all duration-300 project-item"
                         data-aos="zoom-in-up">
                         <img src="cinta.png" alt="Calculator Cinta" class="w-full h-36 object-cover cursor-pointer"
                             onclick="openModal('cinta.png', 'Calculator Cinta', 'Sebuah website interaktif untuk menghitung kecocokan cinta berdasarkan nama. Menampilkan animasi dan hasil yang shareable.')" />
@@ -582,17 +610,17 @@
                             <div class="flex flex-wrap gap-2 mt-3">
                                 <a href="https://calculator-cintakita.netlify.app/" target="_blank"
                                     class="flex items-center justify-center gap-2 px-3 py-1.5 text-sm rounded-md 
-                                                              min-w-[120px]
-                                                              border border-purple-400 text-purple-300 
-                                                              hover:bg-purple-500 hover:text-white transition duration-200">
+                                                                  min-w-[120px]
+                                                                  border border-purple-400 text-purple-300 
+                                                                  hover:bg-purple-500 hover:text-white transition duration-200">
                                     <i class="fas fa-play"></i>
                                     Demo
                                 </a>
                                 <a href="https://github.com/dfirlaapriliani/kalkulatorcinta.git" target="_blank"
                                     class="flex items-center justify-center gap-2 px-3 py-1.5 text-sm rounded-md 
-                                                              min-w-[120px]
-                                                              border border-purple-400 text-purple-300 
-                                                              hover:bg-purple-500 hover:text-white transition duration-200">
+                                                                  min-w-[120px]
+                                                                  border border-purple-400 text-purple-300 
+                                                                  hover:bg-purple-500 hover:text-white transition duration-200">
                                     <i class="fab fa-github"></i>
                                     GitHub
                                 </a>
@@ -602,11 +630,11 @@
 
                     <!-- Project 2 -->
                     <div class="rounded-xl overflow-hidden border border-white/10 
-                bg-gradient-to-br from-[#1a2238] via-[#302244] to-[#1a1a2e]
-                backdrop-blur-md 
-                shadow-[0_6px_18px_rgba(65,60,100,0.3)] 
-                hover:shadow-[0_10px_25px_rgba(110,90,160,0.4)]
-                transition-all duration-300 project-item hidden" data-aos="zoom-in-up">
+                    bg-gradient-to-br from-[#1a2238] via-[#302244] to-[#1a1a2e]
+                    backdrop-blur-md 
+                    shadow-[0_6px_18px_rgba(65,60,100,0.3)] 
+                    hover:shadow-[0_10px_25px_rgba(110,90,160,0.4)]
+                    transition-all duration-300 project-item hidden" data-aos="zoom-in-up">
                         <img src="book.png" alt="Kedai Jajanan" class="w-full h-36 object-cover cursor-pointer"
                             onclick="openModal('book.png', 'Kedai Jajanan', 'Website katalog untuk UMKM jajanan lokal, menampilkan menu, detail produk, dan fitur pemesanan.')" />
                         <div class="p-4">
@@ -614,16 +642,16 @@
                             <p class="text-sm text-gray-300">Website Bookshelf </p>
                             <div class="flex flex-wrap gap-2 mt-3">
                                 <a href="https://bookshelfpinky.netlify.app/" target="_blank" class="flex items-center justify-center gap-2 px-3 py-1.5 text-sm rounded-md 
-                      min-w-[120px]
-                      border border-purple-400 text-purple-300 
-                      hover:bg-purple-500 hover:text-white transition duration-200">
+                          min-w-[120px]
+                          border border-purple-400 text-purple-300 
+                          hover:bg-purple-500 hover:text-white transition duration-200">
                                     <i class="fas fa-play"></i>
                                     Demo
                                 </a>
                                 <a href="https://github.com/dfirlaapriliani/bookshelf-cute.git" target="_blank" class="flex items-center justify-center gap-2 px-3 py-1.5 text-sm rounded-md 
-                      min-w-[120px]
-                      border border-purple-400 text-purple-300 
-                      hover:bg-purple-500 hover:text-white transition duration-200">
+                          min-w-[120px]
+                          border border-purple-400 text-purple-300 
+                          hover:bg-purple-500 hover:text-white transition duration-200">
                                     <i class="fab fa-github"></i>
                                     GitHub
                                 </a>
@@ -663,11 +691,11 @@
 
                     <!-- Certificate 1 -->
                     <div class="rounded-xl overflow-hidden border border-white/10 
-                            bg-gradient-to-br from-[#1a2238] via-[#302244] to-[#1a1a2e]
-                            backdrop-blur-md 
-                            shadow-[0_6px_18px_rgba(65,60,100,0.3)] 
-                            hover:shadow-[0_10px_25px_rgba(110,90,160,0.4)]
-                            transition-all duration-300 certificate-item" data-aos="zoom-in-up">
+                                bg-gradient-to-br from-[#1a2238] via-[#302244] to-[#1a1a2e]
+                                backdrop-blur-md 
+                                shadow-[0_6px_18px_rgba(65,60,100,0.3)] 
+                                hover:shadow-[0_10px_25px_rgba(110,90,160,0.4)]
+                                transition-all duration-300 certificate-item" data-aos="zoom-in-up">
                         <img src="dbs.jpg" alt="Front-End Developer" class="w-full h-56 object-cover cursor-pointer"
                             onclick="openModal('dbs.jpg', 'Front-End Web Developer', 'Sertifikat kelulusan dari kelas Belajar Front-End Web Developer di Dicoding.')">
                         <div class="p-4">
@@ -676,8 +704,8 @@
                             <div class="flex flex-wrap gap-2 mt-3">
                                 <a href="https://drive.google.com/file/d/1b6WTapsEY-LHiivZqATfHWfJu2Jhk2uC/view?usp=sharing"
                                     target="_blank" class="w-full flex items-center justify-center gap-2 px-3 py-1.5 text-sm rounded-md
-                              border border-purple-400 text-purple-300 
-                              hover:bg-purple-500 hover:text-white transition duration-200">
+                                  border border-purple-400 text-purple-300 
+                                  hover:bg-purple-500 hover:text-white transition duration-200">
                                     <i class="fas fa-play"></i>
                                     Demo
                                 </a>
@@ -687,11 +715,12 @@
 
                     <!-- Certificate 2 -->
                     <div class="rounded-xl overflow-hidden border border-white/10 
-                                                bg-gradient-to-br from-[#1a2238] via-[#302244] to-[#1a1a2e]
-                                                backdrop-blur-md 
-                                                shadow-[0_6px_18px_rgba(65,60,100,0.3)] 
-                                                hover:shadow-[0_10px_25px_rgba(110,90,160,0.4)]
-                                                transition-all duration-300 certificate-item" data-aos="zoom-in-up">
+                                                    bg-gradient-to-br from-[#1a2238] via-[#302244] to-[#1a1a2e]
+                                                    backdrop-blur-md 
+                                                    shadow-[0_6px_18px_rgba(65,60,100,0.3)] 
+                                                    hover:shadow-[0_10px_25px_rgba(110,90,160,0.4)]
+                                                    transition-all duration-300 certificate-item"
+                        data-aos="zoom-in-up">
                         <img src="cloud.png" alt="Front-End Developer" class="w-full h-56 object-cover cursor-pointer"
                             onclick="openModal('dcloud.png', 'Front-End Web Developer', 'Sertifikat kelulusan dari kelas Belajar Front-End Web Developer di Dicoding.')">
                         <div class="p-4">
@@ -700,8 +729,8 @@
                             <div class="flex flex-wrap gap-2 mt-3">
                                 <a href="https://drive.google.com/file/d/1tqQf59S99k5SVDMrAbLf_ET74MRyTbD6/view?usp=sharing"
                                     target="_blank" class="w-full flex items-center justify-center gap-2 px-3 py-1.5 text-sm rounded-md
-                                                  border border-purple-400 text-purple-300 
-                                                  hover:bg-purple-500 hover:text-white transition duration-200">
+                                                      border border-purple-400 text-purple-300 
+                                                      hover:bg-purple-500 hover:text-white transition duration-200">
                                     <i class="fas fa-play"></i>
                                     Demo
                                 </a>
@@ -710,11 +739,11 @@
                     </div>
 
                     <div class="rounded-xl overflow-hidden border border-white/10 
-                                                                    bg-gradient-to-br from-[#1a2238] via-[#302244] to-[#1a1a2e]
-                                                                    backdrop-blur-md 
-                                                                    shadow-[0_6px_18px_rgba(65,60,100,0.3)] 
-                                                                    hover:shadow-[0_10px_25px_rgba(110,90,160,0.4)]
-                                                                    transition-all duration-300 certificate-item"
+                                                                        bg-gradient-to-br from-[#1a2238] via-[#302244] to-[#1a1a2e]
+                                                                        backdrop-blur-md 
+                                                                        shadow-[0_6px_18px_rgba(65,60,100,0.3)] 
+                                                                        hover:shadow-[0_10px_25px_rgba(110,90,160,0.4)]
+                                                                        transition-all duration-300 certificate-item"
                         data-aos="zoom-in-up">
                         <img src="trans.jpg" alt="Front-End Developer" class="w-full h-56 object-cover cursor-pointer"
                             onclick="openModal('trans.jpg', 'Front-End Web Developer', 'Sertifikat kelulusan dari kelas Belajar Front-End Web Developer di Dicoding.')">
@@ -725,8 +754,8 @@
                                 <a href="https://drive.google.com/file/d/17hwMjbZonBoV7JMG-RQMU5n33vwfdGJZ/view?usp=sharing"
                                     target="_blank"
                                     class="w-full flex items-center justify-center gap-2 px-3 py-1.5 text-sm rounded-md
-                                                                      border border-purple-400 text-purple-300 
-                                                                      hover:bg-purple-500 hover:text-white transition duration-200">
+                                                                          border border-purple-400 text-purple-300 
+                                                                          hover:bg-purple-500 hover:text-white transition duration-200">
                                     <i class="fas fa-play"></i>
                                     Demo
                                 </a>
@@ -737,11 +766,11 @@
                     <!--bagian show more-->
 
                     <div class="rounded-xl overflow-hidden border border-white/10 
-                                    bg-gradient-to-br from-[#1a2238] via-[#302244] to-[#1a1a2e]
-                                    backdrop-blur-md 
-                                    shadow-[0_6px_18px_rgba(65,60,100,0.3)] 
-                                    hover:shadow-[0_10px_25px_rgba(110,90,160,0.4)]
-                                    transition-all duration-300 certificate-item hidden" data-aos="zoom-in-up">
+                                        bg-gradient-to-br from-[#1a2238] via-[#302244] to-[#1a1a2e]
+                                        backdrop-blur-md 
+                                        shadow-[0_6px_18px_rgba(65,60,100,0.3)] 
+                                        hover:shadow-[0_10px_25px_rgba(110,90,160,0.4)]
+                                        transition-all duration-300 certificate-item hidden" data-aos="zoom-in-up">
                         <img src="english.jpg" alt="Front-End Developer" class="w-full h-56 object-cover cursor-pointer"
                             onclick="openModal('dbs.jpg', 'Front-End Web Developer', 'Sertifikat kelulusan dari kelas Belajar Front-End Web Developer di Dicoding.')">
                         <div class="p-4">
@@ -751,8 +780,8 @@
                                 <a href="https://drive.google.com/file/d/1VMobCOcbEyzA8sJ4AKvstsiYYkwah4vx/view?usp=sharing"
                                     target="_blank"
                                     class="w-full flex items-center justify-center gap-2 px-3 py-1.5 text-sm rounded-md
-                                                              border border-purple-400 text-purple-300 
-                                                              hover:bg-purple-500 hover:text-white transition duration-200">
+                                                                  border border-purple-400 text-purple-300 
+                                                                  hover:bg-purple-500 hover:text-white transition duration-200">
                                     <i class="fas fa-play"></i>
                                     Demo
                                 </a>
@@ -761,11 +790,11 @@
                     </div>
 
                     <div class="rounded-xl overflow-hidden border border-white/10 
-                                    bg-gradient-to-br from-[#1a2238] via-[#302244] to-[#1a1a2e]
-                                    backdrop-blur-md 
-                                    shadow-[0_6px_18px_rgba(65,60,100,0.3)] 
-                                    hover:shadow-[0_10px_25px_rgba(110,90,160,0.4)]
-                                    transition-all duration-300 certificate-item hidden" data-aos="zoom-in-up">
+                                        bg-gradient-to-br from-[#1a2238] via-[#302244] to-[#1a1a2e]
+                                        backdrop-blur-md 
+                                        shadow-[0_6px_18px_rgba(65,60,100,0.3)] 
+                                        hover:shadow-[0_10px_25px_rgba(110,90,160,0.4)]
+                                        transition-all duration-300 certificate-item hidden" data-aos="zoom-in-up">
                         <img src="cdp.png" alt="Front-End Developer" class="w-full h-56 object-cover cursor-pointer"
                             onclick="openModal('cdp.png', 'Front-End Web Developer', 'Sertifikat kelulusan dari kelas Belajar Front-End Web Developer di Dicoding.')">
                         <div class="p-4">
@@ -775,8 +804,8 @@
                                 <a href="https://drive.google.com/file/d/1rJJNbAUktrL5ZcOkeqlqDmy2597Lyt1h/view?usp=sharing"
                                     target="_blank"
                                     class="w-full flex items-center justify-center gap-2 px-3 py-1.5 text-sm rounded-md
-                                                              border border-purple-400 text-purple-300 
-                                                              hover:bg-purple-500 hover:text-white transition duration-200">
+                                                                  border border-purple-400 text-purple-300 
+                                                                  hover:bg-purple-500 hover:text-white transition duration-200">
                                     <i class="fas fa-play"></i>
                                     Demo
                                 </a>
@@ -1087,21 +1116,15 @@
         });
     </script>
 
-    <!-- Footer Section -->
-    <footer class="bg-gray-900 text-white py-16 mt-24 border-t border-gray-700" data-aos="fade-up">
-        <div class="max-w-[1200px] mx-auto px-6 sm:px-8 lg:px-10">
+    <footer class="bg-black/30 backdrop-blur-md py-14 mt-16 border-t border-gray-700 text-white z-10">
+        <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-10">
 
-            <!-- Animated Image on Top -->
-            <div class="flex justify-center mb-10" data-aos="zoom-in">
-                <img src="contact.png" alt="Animated Icon" class="w-32 h-32 sm:w-36 sm:h-36 animate-float" />
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 text-center md:text-left" data-aos="fade-up"
-                data-aos-delay="100">
-                <!-- Social Media Links -->
-                <div data-aos="fade-up" data-aos-delay="200">
-                    <h3 class="text-2xl font-semibold mb-6 text-indigo-400">Follow Me</h3>
-                    <div class="flex justify-center md:justify-start gap-6 text-2xl">
+            <div
+                class="flex flex-col md:flex-row justify-center md:justify-between text-center md:text-left md:gap-12 gap-10">
+                <!-- Follow Me -->
+                <div class="space-y-3">
+                    <h3 class="text-2xl font-semibold text-indigo-400">Follow Me</h3>
+                    <div class="flex justify-center md:justify-start gap-5 text-2xl">
                         <a href="https://github.com/dfirlaapriliaa" target="_blank"
                             class="text-gray-400 hover:text-white transition-transform duration-300 hover:scale-110">
                             <i class="fab fa-github"></i>
@@ -1117,38 +1140,37 @@
                     </div>
                 </div>
 
-                <!-- Navbar Links -->
-                <div data-aos="fade-up" data-aos-delay="300">
-                    <h3 class="text-2xl font-semibold mb-6 text-indigo-400">Quick Links</h3>
-                    <ul class="space-y-4">
-                        <li><a href="#home"
-                                class="text-gray-400 hover:text-white transition-colors duration-300">Home</a>
-                        </li>
-                        <li><a href="#about" class="text-gray-400 hover:text-white transition-colors duration-300">About
-                                Me</a></li>
-                        <li><a href="#project"
-                                class="text-gray-400 hover:text-white transition-colors duration-300">Projects</a></li>
-                        <li><a href="#contact"
-                                class="text-gray-400 hover:text-white transition-colors duration-300">Contact</a></li>
+                <!-- Quick Links -->
+                <div class="space-y-3">
+                    <h3 class="text-2xl font-semibold text-indigo-400">Quick Links</h3>
+                    <ul class="flex flex-col gap-1.5 text-gray-400 text-base">
+                        <li><a href="#home" class="hover:text-white transition-colors duration-300">Home</a></li>
+                        <li><a href="#about" class="hover:text-white transition-colors duration-300">About Me</a></li>
+                        <li><a href="#project" class="hover:text-white transition-colors duration-300">Projects</a></li>
+                        <li><a href="#contact" class="hover:text-white transition-colors duration-300">Contact</a></li>
                     </ul>
                 </div>
 
-                <!-- Contact Information -->
-                <div data-aos="fade-up" data-aos-delay="400">
-                    <h3 class="text-2xl font-semibold mb-6 text-indigo-400">Contact Info</h3>
-                    <p class="text-gray-400 mb-3">Email:
+                <!-- Contact Info -->
+                <div class="space-y-3">
+                    <h3 class="text-2xl font-semibold text-indigo-400">Contact Info</h3>
+                    <div class="text-gray-400 space-y-0.5">
+                        <p>Email:</p>
                         <a href="mailto:dfirlaapriliani@gmail.com"
-                            class="hover:text-white transition-colors duration-300">dfirlaapriliani@gmail.com</a>
-                    </p>
+                            class="hover:text-white transition-colors duration-300 block">
+                            dfirlaapriliani@gmail.com
+                        </a>
+                    </div>
                 </div>
             </div>
 
-            <div class="text-center mt-16 border-t border-gray-700 pt-6" data-aos="fade-up" data-aos-delay="500">
+            <!-- Copyright -->
+            <div class="text-center mt-12 border-t border-gray-700 pt-5">
                 <p class="text-gray-500 text-sm">&copy; 2025 D Firla Apriliani. All rights reserved.</p>
             </div>
+
         </div>
     </footer>
-
 
     <script>
         AOS.init({
@@ -1156,6 +1178,7 @@
             duration: 1000 // durasi default animasi
         });
     </script>
+
 </body>
 
 </html>
