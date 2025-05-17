@@ -1,0 +1,1161 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>D FIRLA APRILIANI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" type="image/png" href="fiya.png" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .gradient-text {
+            background: linear-gradient(90deg, #9333ea, #3b82f6, #9333ea);
+            background-size: 300% 300%;
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shimmer 4s ease-in-out infinite;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        @keyframes shimmer {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .underline-anim {
+            position: relative;
+            font-weight: bold;
+        }
+
+        .underline-anim::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -2px;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #9333ea, #3b82f6);
+            transition: width 0.3s ease;
+        }
+
+        .underline-anim:hover::after,
+        .underline-anim.active::after {
+            width: 100%;
+        }
+
+        .shadow-3d {
+            box-shadow:
+                0 10px 30px rgba(0, 0, 0, 0.4),
+                0 4px 12px rgba(147, 51, 234, 0.3),
+                0 2px 6px rgba(59, 130, 246, 0.2);
+        }
+
+        .menu-icon {
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-4px);
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-[#0B1120] text-white font-bold">
+
+    <!-- NAVBAR -->
+    <nav class="sticky top-4 z-50 w-full flex justify-center" data-aos="fade-down" data-aos-duration="1000">
+        <div
+            class="flex items-center justify-between w-[90%] max-w-6xl px-6 py-3 bg-[#060b23] rounded-full shadow-lg border border-blue-500 shadow-purple-800/50">
+            <!-- Logo -->
+            <div class="text-xl font-bold gradient-text">DFIRLA APRILIANI</div>
+
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex items-center gap-6">
+                <a href="#home" class="nav-link gradient-text underline-anim">Home</a>
+                <a href="#about" class="nav-link gradient-text underline-anim">About</a>
+                <a href="#project" class="nav-link gradient-text underline-anim">Project</a>
+                <a href="#certificate" class="nav-link gradient-text underline-anim">Certificate</a>
+                <a href="#skill" class="nav-link gradient-text underline-anim">Skill</a>
+                <a href="#contact" class="nav-link gradient-text underline-anim">Contact</a>
+                <button id="toggle-sound" class="text-xl text-white hover:text-purple-400 transition">
+                    <i id="sound-icon" class="fas fa-volume-up"></i>
+                </button>
+            </div>
+
+            <!-- Mobile Menu Icon -->
+            <button id="menu-toggle" class="md:hidden text-white text-2xl menu-icon">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- MOBILE DRAWER -->
+    <div id="drawer"
+        class="fixed top-0 left-0 h-full w-64 bg-[#0B1120] border-r border-blue-500 shadow-3d transform -translate-x-full transition-transform duration-300 z-[999] md:hidden">
+        <div class="flex justify-between items-center p-4 border-b border-blue-500">
+            <div class="gradient-text text-lg font-bold">Menu</div>
+            <button id="close-drawer" class="text-white">
+                <i class="fas fa-times text-lg"></i>
+            </button>
+        </div>
+        <ul class="flex flex-col text-left pl-6 space-y-6 mt-6 text-white font-semibold">
+            <li><a href="#home" class="nav-link gradient-text underline-anim">Home</a></li>
+            <li><a href="#about" class="nav-link gradient-text underline-anim">About</a></li>
+            <li><a href="#project" class="nav-link gradient-text underline-anim">Project</a></li>
+            <li><a href="#certificate" class="nav-link gradient-text underline-anim">Certificate</a></li>
+            <li><a href="#skill" class="nav-link gradient-text underline-anim">Skill</a></li>
+            <li><a href="#contact" class="nav-link gradient-text underline-anim">Contact</a></li>
+            <li>
+                <button id="toggle-sound-mobile" class="text-white hover:text-purple-400" title="Toggle Sound">
+                    <i id="sound-icon-mobile" class="fas fa-volume-up"></i>
+                </button>
+            </li>
+        </ul>
+    </div>
+
+    <!-- AUDIO -->
+    <audio id="nav-sound" src="https://www.myinstants.com/media/sounds/bruh.mp3"></audio>
+
+    <script>
+        AOS.init({ once: true });
+
+        const menuToggle = document.getElementById("menu-toggle");
+        const drawer = document.getElementById("drawer");
+        const closeDrawer = document.getElementById("close-drawer");
+        const navLinks = document.querySelectorAll(".nav-link");
+        const navSound = document.getElementById("nav-sound");
+        const soundToggle = document.getElementById("toggle-sound");
+        const soundIcon = document.getElementById("sound-icon");
+        const soundToggleMobile = document.getElementById("toggle-sound-mobile");
+        const soundIconMobile = document.getElementById("sound-icon-mobile");
+
+        let isMuted = false;
+
+        menuToggle?.addEventListener("click", () => {
+            drawer.classList.remove("-translate-x-full");
+        });
+
+        closeDrawer?.addEventListener("click", () => {
+            drawer.classList.add("-translate-x-full");
+        });
+
+        navLinks.forEach(link => {
+            link.addEventListener("click", () => {
+                if (!isMuted) {
+                    navSound.currentTime = 0;
+                    navSound.play();
+                }
+                drawer.classList.add("-translate-x-full");
+            });
+        });
+
+        soundToggle?.addEventListener("click", () => {
+            isMuted = !isMuted;
+            soundIcon.classList.toggle("fa-volume-up", !isMuted);
+            soundIcon.classList.toggle("fa-volume-mute", isMuted);
+        });
+
+        soundToggleMobile?.addEventListener("click", () => {
+            isMuted = !isMuted;
+            soundIconMobile.classList.toggle("fa-volume-up", !isMuted);
+            soundIconMobile.classList.toggle("fa-volume-mute", isMuted);
+        });
+
+        function highlightActiveLink() {
+            const sections = ["home", "about", "project", "certificate", "skill", "contact"];
+            let current = "";
+            const scrollY = window.scrollY + 100;
+
+            for (let id of sections) {
+                const el = document.getElementById(id);
+                if (el && el.offsetTop <= scrollY) {
+                    current = id;
+                }
+            }
+
+            document.querySelectorAll(".nav-link").forEach(link => {
+                link.classList.remove("active");
+                if (link.getAttribute("href") === `#${current}`) {
+                    link.classList.add("active");
+                }
+            });
+        }
+
+        window.addEventListener("scroll", highlightActiveLink);
+        window.addEventListener("load", highlightActiveLink);
+    </script>
+
+    <!-- Hero Section -->
+    <section class="min-h-screen flex items-center justify-center px-6 pt-16 md:px-10 md:pt-24 lg:px-24" id="home">
+        <div class="grid md:grid-cols-2 items-center gap-10 max-w-6xl w-full">
+
+            <!-- IMAGE -->
+            <div class="flex justify-center items-center py-6 md:py-12 perspective" data-aos="fade-right">
+                <div class="w-[80%] max-w-[320px] sm:max-w-[350px] md:max-w-[380px] animate-float z-10">
+                    <img src="devlop.png" alt="profile"
+                        class="w-full h-auto object-cover transition-transform duration-1000 hover:scale-105" />
+                </div>
+            </div>
+
+            <!-- TEXT -->
+            <div class="text-white z-20" data-aos="fade-left">
+
+                <!-- Tag -->
+                <div
+                    class="inline-block mb-4 md:mb-5 px-5 py-2 rounded-full text-sm font-semibold tracking-wide text-indigo-300 border border-indigo-500 bg-transparent backdrop-blur-sm shadow-[0_0_12px_rgba(99,102,241,0.2)] hover:shadow-[0_0_20px_rgba(99,102,241,0.4)] transition">
+                    🔧 It's Me
+                </div>
+
+                <!-- Title -->
+                <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight mb-2">
+                    <span
+                        class="block bg-gradient-to-r from-blue-900 via-indigo-400 to-purple-800 bg-[length:200%_200%] bg-clip-text text-transparent animate-textGradient">Frontend</span>
+                    <span
+                        class="block bg-gradient-to-r from-blue-900 via-indigo-400 to-purple-800 bg-[length:200%_200%] bg-clip-text text-transparent animate-textGradient">Developer</span>
+                </h1>
+
+                <!-- Subtitle -->
+                <h2 class="text-base sm:text-lg mt-2 text-slate-300">Take Steps to Develop</h2>
+                <p class="mt-3 text-slate-400 max-w-md text-sm sm:text-base">
+                    Menciptakan Website yang Inovatif, Fungsional, dan User-Friendly untuk Solusi Digital.
+                </p>
+
+                <!-- Skills -->
+                <div class="flex flex-wrap gap-3 mt-5">
+                    <span
+                        class="px-4 py-1 border border-slate-500 rounded-full text-sm hover:shadow-[0_0_15px_rgba(99,102,241,0.6)] hover:border-indigo-400">Tailwind
+                        Css</span>
+                    <span
+                        class="px-4 py-1 border border-slate-500 rounded-full text-sm hover:shadow-[0_0_15px_rgba(99,102,241,0.6)] hover:border-indigo-400">Javascript</span>
+                    <span
+                        class="px-4 py-1 border border-slate-500 rounded-full text-sm hover:shadow-[0_0_15px_rgba(99,102,241,0.6)] hover:border-indigo-400">React</span>
+                    <span
+                        class="px-4 py-1 border border-slate-500 rounded-full text-sm hover:shadow-[0_0_15px_rgba(99,102,241,0.6)] hover:border-indigo-400">Python</span>
+                </div>
+
+                <!-- Music Player Button -->
+                <div class="mt-8 space-y-3" data-aos="fade-up">
+                    <div onclick="document.getElementById('musicPlayer').classList.toggle('hidden')"
+                        class="group cursor-pointer flex items-center gap-4 w-max px-6 py-3 rounded-full border border-indigo-400 backdrop-blur-md shadow-lg hover:shadow-[0_0_25px_rgba(99,102,241,0.5)] transition-all duration-300 text-indigo-300 hover:text-indigo-400">
+                        <i class="fas fa-music text-xl animate-bounce-slow"></i>
+                        <span class="text-sm font-medium tracking-wide">My Favorite Arabic Song</span>
+                        <i class="fas fa-chevron-down text-sm group-hover:rotate-180 transition-transform"></i>
+                    </div>
+
+                    <!-- Embedded Spotify -->
+                    <div id="musicPlayer" class="hidden transition-all duration-500">
+                        <div
+                            class="mt-4 p-3 rounded-xl border border-indigo-500 bg-black/20 backdrop-blur-md shadow-[0_0_25px_rgba(99,102,241,0.3)] hover:shadow-[0_0_35px_rgba(99,102,241,0.5)] transition">
+                            <iframe style="border-radius:12px"
+                                src="https://open.spotify.com/embed/track/4OUdz7NPAgeU5e3mD0Ft4Z?utm_source=generator&theme=0"
+                                width="100%" height="152" frameBorder="0" allowfullscreen=""
+                                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                                loading="lazy"></iframe>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Social Media -->
+                <div class="flex gap-5 mt-3 sm:mt-4 md:mt-6 text-white text-2xl" data-aos="fade-up"
+                    data-aos-delay="200">
+                    <a href="https://github.com/dfirlaapriliaa"
+                        class="p-2 rounded-full bg-black bg-opacity-20 hover:shadow-[0_0_15px_rgba(99,102,241,0.6)] transition">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/dfirla-apriliani-bb7260316/"
+                        class="p-2 rounded-full bg-black bg-opacity-20 hover:shadow-[0_0_15px_rgba(59,130,246,0.6)] transition">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="https://www.instagram.com/deefacell_/"
+                        class="p-2 rounded-full bg-black bg-opacity-20 hover:shadow-[0_0_15px_rgba(139,92,246,0.6)] transition">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- STYLES -->
+    <style>
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        @keyframes textGradient {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        @keyframes bounce-slow {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-5px);
+            }
+        }
+
+        .animate-textGradient {
+            background-size: 200% 200%;
+            animation: textGradient 5s ease infinite;
+        }
+
+        .animate-float {
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .animate-bounce-slow {
+            animation: bounce-slow 2s infinite;
+        }
+    </style>
+
+    <!-- About Me Section -->
+    <section id="about" class="py-20 overflow-hidden">
+        <div class="max-w-[1000px] mx-auto px-4 sm:px-6 lg:px-8">
+
+            <!-- Section Title -->
+            <div class="mb-12 md:mb-16 pl-2" data-aos="fade-right" data-aos-duration="1000">
+                <h2
+                    class="text-4xl md:text-5xl font-extrabold uppercase inline-block bg-gradient-to-r from-purple-500 to-blue-900 text-transparent bg-clip-text tracking-wide">
+                    ABOUT ME
+                    <span class="block h-[3px] w-1/2 bg-purple-500 mt-2"></span>
+                </h2>
+            </div>
+
+
+            <!-- Content Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 items-center gap-12 md:gap-20" data-aos="fade-up"
+                data-aos-delay="200" data-aos-duration="1000">
+
+                <!-- Foto dengan efek glow belakang & animasi -->
+                <div class="flex justify-center md:justify-start relative md:ml-12">
+                    <!-- efek gradasi glow belakang -->
+                    <div
+                        class="absolute w-[350px] h-[350px] sm:w-[400px] sm:h-[400px] bg-gradient-to-br from-purple-500 to-blue-900 opacity-40 blur-2xl rounded-full animate-pulse-slow z-0">
+                    </div>
+
+                    <!-- foto -->
+                    <img src="ami.png" alt="About Image"
+                        class="relative z-10 w-full max-w-[350px] sm:max-w-[400px] object-cover animate-float" />
+                </div>
+
+                <!-- Deskripsi -->
+                <div data-aos="fade-left" data-aos-duration="1000"
+                    class="font-[Poppins] text-base md:text-lg text-gray-300 leading-relaxed text-justify space-y-5">
+
+                    <p>
+                        Halo, saya <span
+                            class="font-medium text-white underline underline-offset-4 decoration-purple-400 hover:decoration-wavy transition duration-300">D
+                            Firla</span> —
+                        seorang <span
+                            class="font-medium text-white underline underline-offset-4 decoration-purple-400 hover:decoration-wavy transition duration-300">frontend
+                            developer</span>
+                        yang berfokus pada <span
+                            class="font-medium text-white underline underline-offset-4 decoration-purple-400 hover:decoration-wavy transition duration-300">antarmuka
+                            modern & responsif</span>.
+                    </p>
+
+                    <p>
+                        Saya terbiasa membangun aplikasi web menggunakan
+                        <span
+                            class="font-medium text-white underline underline-offset-4 decoration-cyan-400 hover:decoration-wavy transition duration-300">react</span>,
+                        <span
+                            class="font-medium text-white underline underline-offset-4 decoration-cyan-400 hover:decoration-wavy transition duration-300">tailwind
+                            css</span>, dan
+                        <span
+                            class="font-medium text-white underline underline-offset-4 decoration-cyan-400 hover:decoration-wavy transition duration-300">teknologi
+                            web modern lainnya</span>.
+                    </p>
+
+                    <p>
+                        Buat saya, kombinasi antara <span
+                            class="font-medium text-white underline underline-offset-4 decoration-pink-400 hover:decoration-wavy transition duration-300">estetika</span>
+                        dan
+                        <span
+                            class="font-medium text-white underline underline-offset-4 decoration-pink-400 hover:decoration-wavy transition duration-300">fungsi</span>
+                        bisa menciptakan pengalaman digital yang
+                        <span
+                            class="font-medium text-white underline underline-offset-4 decoration-pink-400 hover:decoration-wavy transition duration-300">berkesan</span>.
+                    </p>
+
+                    <p>
+                        Di luar coding, saya suka <span
+                            class="font-medium text-white underline underline-offset-4 decoration-blue-400 hover:decoration-wavy transition duration-300">eksplor
+                            teknologi baru</span>,
+                        <span
+                            class="font-medium text-white underline underline-offset-4 decoration-blue-400 hover:decoration-wavy transition duration-300">belajar
+                            hal random</span>, dan
+                        <span
+                            class="font-medium text-white underline underline-offset-4 decoration-blue-400 hover:decoration-wavy transition duration-300">ngopi
+                            tengah malam sambil ngulik bug</span> ☕
+                    </p>
+
+                    <!-- Tombol -->
+                    <div class="flex flex-col sm:flex-row gap-4 sm:gap-6 pt-4">
+                        <a href="https://drive.google.com/file/d/1Ny3Gg7xns07bDE1hKBzadRJZVe_QX-ev/view?usp=sharing"
+                            target="_blank"
+                            class="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl border border-purple-400 text-white text-sm font-medium transition duration-300 hover:shadow-[0_0_12px_rgba(192,132,252,0.5)]">
+                            <i class="fas fa-file-alt text-purple-300"></i> Lihat CV
+                        </a>
+                        <a href="#project"
+                            class="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl border border-cyan-300 text-white text-sm font-medium transition duration-300 hover:shadow-[0_0_12px_rgba(103,232,249,0.5)]">
+                            <i class="fas fa-rocket text-cyan-300"></i> Lihat Project
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tailwind Custom Animation -->
+    <style>
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-12px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .animate-pulse-slow {
+            animation: pulse 4s ease-in-out infinite;
+        }
+    </style>
+
+    <!-- Portfolio Section -->
+    <section id="project" class="py-16 px-4 md:px-8 lg:px-16 bg-transparent">
+        <div class="max-w-screen-xl mx-auto w-full lg:w-[95%]">
+            <!-- Judul -->
+            <div class="mb-12 md:mb-16 pl-2" data-aos="fade-right" data-aos-duration="1000">
+                <h2
+                    class="text-4xl md:text-5xl font-extrabold uppercase inline-block bg-gradient-to-r from-purple-500 to-blue-900 text-transparent bg-clip-text tracking-wide">
+                    PROJECT
+                    <span class="block h-[3px] w-1/2 bg-purple-500 mt-2"></span>
+                </h2>
+            </div>
+
+            <!-- Grid Project -->
+            <div class="pt-1 pb-10">
+                <div class="max-w-6xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+                    <!-- Project 1 -->
+                    <div class="rounded-xl overflow-hidden border border-white/10 
+                bg-gradient-to-br from-[#1a2238] via-[#302244] to-[#1a1a2e]
+                backdrop-blur-md 
+                shadow-[0_6px_18px_rgba(65,60,100,0.3)] 
+                hover:shadow-[0_10px_25px_rgba(110,90,160,0.4)]
+                transition-all duration-300 project-item" data-aos="zoom-in-up">
+                        <img src="kema.png" alt="Calculator Cinta" class="w-full h-36 object-cover cursor-pointer"
+                            onclick="openModal('kema.png', 'Calculator Cinta', 'Sebuah website interaktif untuk menghitung kecocokan cinta berdasarkan nama. Menampilkan animasi dan hasil yang shareable.')" />
+                        <div class="p-4">
+                            <h3 class="text-lg font-semibold text-white mb-1">Kedai Makanan</h3>
+                            <p class="text-sm text-gray-300">Kedai makanan digital</p>
+                            <div class="flex flex-wrap gap-2 mt-3">
+                                <a href="https://kedaimakananku.netlify.app/" target="_blank" class="flex items-center justify-center gap-2 px-3 py-1.5 text-sm rounded-md 
+                      min-w-[120px]
+                      border border-purple-400 text-purple-300 
+                      hover:bg-purple-500 hover:text-white transition duration-200">
+                                    <i class="fas fa-play"></i>
+                                    Demo
+                                </a>
+                                <a href="https://github.com/dfirlaapriliani/kedai-makananku.git" target="_blank" class="flex items-center justify-center gap-2 px-3 py-1.5 text-sm rounded-md 
+                      min-w-[120px]
+                      border border-purple-400 text-purple-300 
+                      hover:bg-purple-500 hover:text-white transition duration-200">
+                                    <i class="fab fa-github"></i>
+                                    GitHub
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- Project 1 -->
+                    <div class="rounded-xl overflow-hidden border border-white/10 
+                                    bg-gradient-to-br from-[#1a2238] via-[#302244] to-[#1a1a2e]
+                                    backdrop-blur-md 
+                                    shadow-[0_6px_18px_rgba(65,60,100,0.3)] 
+                                    hover:shadow-[0_10px_25px_rgba(110,90,160,0.4)]
+                                    transition-all duration-300 project-item" data-aos="zoom-in-up">
+                        <img src="vier.png" alt="Calculator Cinta" class="w-full h-36 object-cover cursor-pointer"
+                            onclick="openModal('vier.png', 'Calculator Cinta', 'Sebuah website interaktif untuk menghitung kecocokan cinta berdasarkan nama. Menampilkan animasi dan hasil yang shareable.')" />
+                        <div class="p-4">
+                            <h3 class="text-lg font-semibold text-white mb-1">Sistem Jasa Online</h3>
+                            <p class="text-sm text-gray-300">Website Jasa Online.</p>
+                            <div class="flex flex-wrap gap-2 mt-3">
+                                <a href="https://drive.google.com/file/d/1vtwFA3J36bEb8apSkD25SjVyJMmeg1sq/view?usp=sharing"
+                                    target="_blank" class="flex items-center justify-center gap-2 px-3 py-1.5 text-sm rounded-md 
+                                          min-w-[120px]
+                                          border border-purple-400 text-purple-300 
+                                          hover:bg-purple-500 hover:text-white transition duration-200">
+                                    <i class="fas fa-play"></i>
+                                    Demo
+                                </a>
+                                <a href="https://github.com/dfirlaapriliani/SISTEM_JASA_ONLINE.git" target="_blank"
+                                    class="flex items-center justify-center gap-2 px-3 py-1.5 text-sm rounded-md 
+                                          min-w-[120px]
+                                          border border-purple-400 text-purple-300 
+                                          hover:bg-purple-500 hover:text-white transition duration-200">
+                                    <i class="fab fa-github"></i>
+                                    GitHub
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 1 -->
+                    <div class="rounded-xl overflow-hidden border border-white/10 
+                                                        bg-gradient-to-br from-[#1a2238] via-[#302244] to-[#1a1a2e]
+                                                        backdrop-blur-md 
+                                                        shadow-[0_6px_18px_rgba(65,60,100,0.3)] 
+                                                        hover:shadow-[0_10px_25px_rgba(110,90,160,0.4)]
+                                                        transition-all duration-300 project-item"
+                        data-aos="zoom-in-up">
+                        <img src="cinta.png" alt="Calculator Cinta" class="w-full h-36 object-cover cursor-pointer"
+                            onclick="openModal('cinta.png', 'Calculator Cinta', 'Sebuah website interaktif untuk menghitung kecocokan cinta berdasarkan nama. Menampilkan animasi dan hasil yang shareable.')" />
+                        <div class="p-4">
+                            <h3 class="text-lg font-semibold text-white mb-1">Calculator Cinta</h3>
+                            <p class="text-sm text-gray-300">Website pengitung cinta kita</p>
+                            <div class="flex flex-wrap gap-2 mt-3">
+                                <a href="https://calculator-cintakita.netlify.app/" target="_blank"
+                                    class="flex items-center justify-center gap-2 px-3 py-1.5 text-sm rounded-md 
+                                                              min-w-[120px]
+                                                              border border-purple-400 text-purple-300 
+                                                              hover:bg-purple-500 hover:text-white transition duration-200">
+                                    <i class="fas fa-play"></i>
+                                    Demo
+                                </a>
+                                <a href="https://github.com/dfirlaapriliani/kalkulatorcinta.git" target="_blank"
+                                    class="flex items-center justify-center gap-2 px-3 py-1.5 text-sm rounded-md 
+                                                              min-w-[120px]
+                                                              border border-purple-400 text-purple-300 
+                                                              hover:bg-purple-500 hover:text-white transition duration-200">
+                                    <i class="fab fa-github"></i>
+                                    GitHub
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 2 -->
+                    <div class="rounded-xl overflow-hidden border border-white/10 
+                bg-gradient-to-br from-[#1a2238] via-[#302244] to-[#1a1a2e]
+                backdrop-blur-md 
+                shadow-[0_6px_18px_rgba(65,60,100,0.3)] 
+                hover:shadow-[0_10px_25px_rgba(110,90,160,0.4)]
+                transition-all duration-300 project-item hidden" data-aos="zoom-in-up">
+                        <img src="book.png" alt="Kedai Jajanan" class="w-full h-36 object-cover cursor-pointer"
+                            onclick="openModal('book.png', 'Kedai Jajanan', 'Website katalog untuk UMKM jajanan lokal, menampilkan menu, detail produk, dan fitur pemesanan.')" />
+                        <div class="p-4">
+                            <h3 class="text-lg font-semibold text-white mb-1">Bookshelf App</h3>
+                            <p class="text-sm text-gray-300">Website Bookshelf </p>
+                            <div class="flex flex-wrap gap-2 mt-3">
+                                <a href="https://bookshelfpinky.netlify.app/" target="_blank" class="flex items-center justify-center gap-2 px-3 py-1.5 text-sm rounded-md 
+                      min-w-[120px]
+                      border border-purple-400 text-purple-300 
+                      hover:bg-purple-500 hover:text-white transition duration-200">
+                                    <i class="fas fa-play"></i>
+                                    Demo
+                                </a>
+                                <a href="https://github.com/dfirlaapriliani/bookshelf-cute.git" target="_blank" class="flex items-center justify-center gap-2 px-3 py-1.5 text-sm rounded-md 
+                      min-w-[120px]
+                      border border-purple-400 text-purple-300 
+                      hover:bg-purple-500 hover:text-white transition duration-200">
+                                    <i class="fab fa-github"></i>
+                                    GitHub
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tambahkan project lainnya di dalam grid ini -->
+                </div>
+
+                <!-- Tombol Show More -->
+                <div class="text-center mt-12">
+                    <button id="showMoreProjectsBtn"
+                        class="px-6 py-2 rounded-lg border border-purple-400 text-purple-300 hover:bg-purple-600 hover:text-white transition">
+                        Show More
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certificates Section -->
+    <section id="certificate" class="pt-4 pb-8 px-4 md:px-8 lg:px-16 bg-transparent">
+        <div class="max-w-screen-xl mx-auto w-full lg:w-[95%]">
+            <!-- Judul -->
+            <div class="mb-8 md:mb-12 pl-2" data-aos="fade-right" data-aos-duration="1000">
+                <h2
+                    class="text-4xl md:text-5xl font-extrabold uppercase inline-block bg-gradient-to-r from-purple-500 to-blue-900 text-transparent bg-clip-text tracking-wide">
+                    CERTIFICATE
+                    <span class="block h-[3px] w-1/2 bg-purple-500 mt-2"></span>
+                </h2>
+            </div>
+
+            <!-- Grid Certificate -->
+            <div class="pt-2 pb-10">
+                <div class="max-w-6xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+
+                    <!-- Certificate 1 -->
+                    <div class="rounded-xl overflow-hidden border border-white/10 
+                            bg-gradient-to-br from-[#1a2238] via-[#302244] to-[#1a1a2e]
+                            backdrop-blur-md 
+                            shadow-[0_6px_18px_rgba(65,60,100,0.3)] 
+                            hover:shadow-[0_10px_25px_rgba(110,90,160,0.4)]
+                            transition-all duration-300 certificate-item" data-aos="zoom-in-up">
+                        <img src="dbs.jpg" alt="Front-End Developer" class="w-full h-56 object-cover cursor-pointer"
+                            onclick="openModal('dbs.jpg', 'Front-End Web Developer', 'Sertifikat kelulusan dari kelas Belajar Front-End Web Developer di Dicoding.')">
+                        <div class="p-4">
+                            <h3 class="text-lg font-semibold text-white mb-1">Coding camp 2025</h3>
+                            <p class="text-sm text-gray-300">Dicoding DBS Academy</p>
+                            <div class="flex flex-wrap gap-2 mt-3">
+                                <a href="https://drive.google.com/file/d/1b6WTapsEY-LHiivZqATfHWfJu2Jhk2uC/view?usp=sharing"
+                                    target="_blank" class="w-full flex items-center justify-center gap-2 px-3 py-1.5 text-sm rounded-md
+                              border border-purple-400 text-purple-300 
+                              hover:bg-purple-500 hover:text-white transition duration-200">
+                                    <i class="fas fa-play"></i>
+                                    Demo
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Certificate 2 -->
+                    <div class="rounded-xl overflow-hidden border border-white/10 
+                                                bg-gradient-to-br from-[#1a2238] via-[#302244] to-[#1a1a2e]
+                                                backdrop-blur-md 
+                                                shadow-[0_6px_18px_rgba(65,60,100,0.3)] 
+                                                hover:shadow-[0_10px_25px_rgba(110,90,160,0.4)]
+                                                transition-all duration-300 certificate-item" data-aos="zoom-in-up">
+                        <img src="cloud.png" alt="Front-End Developer" class="w-full h-56 object-cover cursor-pointer"
+                            onclick="openModal('dcloud.png', 'Front-End Web Developer', 'Sertifikat kelulusan dari kelas Belajar Front-End Web Developer di Dicoding.')">
+                        <div class="p-4">
+                            <h3 class="text-lg font-semibold text-white mb-1">Alibaba Cloud</h3>
+                            <p class="text-sm text-gray-300">Alibaba Academy</p>
+                            <div class="flex flex-wrap gap-2 mt-3">
+                                <a href="https://drive.google.com/file/d/1tqQf59S99k5SVDMrAbLf_ET74MRyTbD6/view?usp=sharing"
+                                    target="_blank" class="w-full flex items-center justify-center gap-2 px-3 py-1.5 text-sm rounded-md
+                                                  border border-purple-400 text-purple-300 
+                                                  hover:bg-purple-500 hover:text-white transition duration-200">
+                                    <i class="fas fa-play"></i>
+                                    Demo
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="rounded-xl overflow-hidden border border-white/10 
+                                                                    bg-gradient-to-br from-[#1a2238] via-[#302244] to-[#1a1a2e]
+                                                                    backdrop-blur-md 
+                                                                    shadow-[0_6px_18px_rgba(65,60,100,0.3)] 
+                                                                    hover:shadow-[0_10px_25px_rgba(110,90,160,0.4)]
+                                                                    transition-all duration-300 certificate-item"
+                        data-aos="zoom-in-up">
+                        <img src="trans.jpg" alt="Front-End Developer" class="w-full h-56 object-cover cursor-pointer"
+                            onclick="openModal('trans.jpg', 'Front-End Web Developer', 'Sertifikat kelulusan dari kelas Belajar Front-End Web Developer di Dicoding.')">
+                        <div class="p-4">
+                            <h3 class="text-lg font-semibold text-white mb-1">Transcript DBS 2025</h3>
+                            <p class="text-sm text-gray-300">Dicoding DBS 2025 Academy</p>
+                            <div class="flex flex-wrap gap-2 mt-3">
+                                <a href="https://drive.google.com/file/d/17hwMjbZonBoV7JMG-RQMU5n33vwfdGJZ/view?usp=sharing"
+                                    target="_blank"
+                                    class="w-full flex items-center justify-center gap-2 px-3 py-1.5 text-sm rounded-md
+                                                                      border border-purple-400 text-purple-300 
+                                                                      hover:bg-purple-500 hover:text-white transition duration-200">
+                                    <i class="fas fa-play"></i>
+                                    Demo
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--bagian show more-->
+
+                    <div class="rounded-xl overflow-hidden border border-white/10 
+                                    bg-gradient-to-br from-[#1a2238] via-[#302244] to-[#1a1a2e]
+                                    backdrop-blur-md 
+                                    shadow-[0_6px_18px_rgba(65,60,100,0.3)] 
+                                    hover:shadow-[0_10px_25px_rgba(110,90,160,0.4)]
+                                    transition-all duration-300 certificate-item hidden" data-aos="zoom-in-up">
+                        <img src="english.jpg" alt="Front-End Developer" class="w-full h-56 object-cover cursor-pointer"
+                            onclick="openModal('dbs.jpg', 'Front-End Web Developer', 'Sertifikat kelulusan dari kelas Belajar Front-End Web Developer di Dicoding.')">
+                        <div class="p-4">
+                            <h3 class="text-lg font-semibold text-white mb-1">English TBI 2025</h3>
+                            <p class="text-sm text-gray-300">Dicoding TBI DBS 2025 Academy</p>
+                            <div class="flex flex-wrap gap-2 mt-3">
+                                <a href="https://drive.google.com/file/d/1VMobCOcbEyzA8sJ4AKvstsiYYkwah4vx/view?usp=sharing"
+                                    target="_blank"
+                                    class="w-full flex items-center justify-center gap-2 px-3 py-1.5 text-sm rounded-md
+                                                              border border-purple-400 text-purple-300 
+                                                              hover:bg-purple-500 hover:text-white transition duration-200">
+                                    <i class="fas fa-play"></i>
+                                    Demo
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="rounded-xl overflow-hidden border border-white/10 
+                                    bg-gradient-to-br from-[#1a2238] via-[#302244] to-[#1a1a2e]
+                                    backdrop-blur-md 
+                                    shadow-[0_6px_18px_rgba(65,60,100,0.3)] 
+                                    hover:shadow-[0_10px_25px_rgba(110,90,160,0.4)]
+                                    transition-all duration-300 certificate-item hidden" data-aos="zoom-in-up">
+                        <img src="cdp.png" alt="Front-End Developer" class="w-full h-56 object-cover cursor-pointer"
+                            onclick="openModal('cdp.png', 'Front-End Web Developer', 'Sertifikat kelulusan dari kelas Belajar Front-End Web Developer di Dicoding.')">
+                        <div class="p-4">
+                            <h3 class="text-lg font-semibold text-white mb-1">Svelte Todo-App</h3>
+                            <p class="text-sm text-gray-300">DevHandal Codepolitan Academy</p>
+                            <div class="flex flex-wrap gap-2 mt-3">
+                                <a href="https://drive.google.com/file/d/1rJJNbAUktrL5ZcOkeqlqDmy2597Lyt1h/view?usp=sharing"
+                                    target="_blank"
+                                    class="w-full flex items-center justify-center gap-2 px-3 py-1.5 text-sm rounded-md
+                                                              border border-purple-400 text-purple-300 
+                                                              hover:bg-purple-500 hover:text-white transition duration-200">
+                                    <i class="fas fa-play"></i>
+                                    Demo
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tombol Show More -->
+                <div class="text-center mt-10">
+                    <button id="showMoreCertificatesBtn"
+                        class="px-6 py-2 rounded-lg border border-purple-400 text-purple-300 hover:bg-purple-600 hover:text-white transition">
+                        Show More
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Script Modal -->
+    <script>
+
+        const toggleItems = (btnId, selector, showText = "Show More", hideText = "Show Less") => {
+            const btn = document.getElementById(btnId);
+            const items = document.querySelectorAll(selector);
+            let expanded = false;
+
+            btn.addEventListener('click', () => {
+                expanded = !expanded;
+                items.forEach(item => item.classList.toggle('hidden'));
+                btn.textContent = expanded ? hideText : showText;
+            });
+        };
+
+        toggleItems("showMoreProjectsBtn", ".project-item.hidden");
+        toggleItems("showMoreCertificatesBtn", ".certificate-item.hidden");
+
+        AOS.init();
+    </script>
+
+    <!-- Tailwind Custom Styles -->
+    <style>
+        .btn-wide {
+            @apply w-full sm:w-auto min-w-[180px] px-5 py-2 rounded-md border border-purple-400 text-purple-300 hover:bg-purple-600 hover:text-white flex items-center justify-center gap-2 transition;
+        }
+
+        .btn-primary {
+            @apply bg-gradient-to-r from-blue-700 to-purple-500 hover:from-blue-600 hover:to-purple-400 text-white font-semibold px-4 py-2 rounded-lg transition;
+        }
+
+        .btn-secondary {
+            @apply bg-transparent border border-purple-400 text-purple-300 hover:bg-purple-600 hover:text-white font-semibold px-4 py-2 rounded-lg transition;
+        }
+
+        .btn-outline {
+            @apply px-4 py-2 rounded-lg border border-purple-400 text-purple-200 hover:bg-purple-600 hover:text-white transition;
+        }
+    </style>
+
+    <!-- Skill Section -->
+    <section id="skill" class="pt-4 pb-8 px-4 md:px-8 lg:px-16 bg-transparent">
+        <div class="max-w-screen-xl mx-auto w-full lg:w-[95%]">
+            <!-- Judul -->
+            <div class="mb-8 md:mb-12 pl-2" data-aos="fade-right" data-aos-duration="1000">
+                <h2
+                    class="text-4xl md:text-5xl font-extrabold uppercase inline-block bg-gradient-to-r from-purple-500 to-blue-900 text-transparent bg-clip-text tracking-wide">
+                    SKILL
+                    <span class="block h-[3px] w-1/2 bg-purple-500 mt-2"></span>
+                </h2>
+            </div>
+
+            <!-- Logo Slider -->
+            <div class="overflow-hidden relative w-full">
+                <div class="stack-loop flex gap-10 w-max animate-scroll-logo">
+                    <!-- Logo Images (duplikat supaya loop) -->
+                    <template id="logos">
+                        <img src="tailwind.png" alt="Tailwind CSS" class="h-16 w-auto" />
+                        <img src="react.png" alt="React" class="h-16 w-auto" />
+                        <img src="javascript.png" alt="JavaScript" class="h-16 w-auto" />
+                        <img src="html5.png" alt="HTML5" class="h-16 w-auto" />
+                        <img src="css3.png" alt="CSS3" class="h-16 w-auto" />
+                        <img src="docker.png" alt="Docker" class="h-16 w-auto" />
+                        <img src="node.png" alt="Node.js" class="h-16 w-auto" />
+                        <img src="laravel.png" alt="Laravel" class="h-16 w-auto" />
+                        <img src="php.png" alt="PHP" class="h-16 w-auto" />
+                        <img src="postman.png" alt="Postman" class="h-16 w-auto" />
+                        <img src="composer.png" alt="Composer" class="h-16 w-auto" />
+                        <img src="flutter.png" alt="Flutter" class="h-16 w-auto" />
+                        <img src="figma.png" alt="Figma" class="h-16 w-auto" />
+                        <img src="vsc.png" alt="VSCode" class="h-16 w-auto" />
+                        <img src="cope.png" alt="CodePen" class="h-16 w-auto" />
+                    </template>
+
+                    <!-- Render 2x untuk loop -->
+                    <script>
+                        const loopContainer = document.querySelector(".stack-loop");
+                        const logos = document.getElementById("logos").content;
+                        for (let i = 0; i < 2; i++) {
+                            loopContainer.appendChild(logos.cloneNode(true));
+                        }
+                    </script>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <style>
+        @keyframes scroll-logo {
+            0% {
+                transform: translateX(0%);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        .animate-scroll-logo {
+            animation: scroll-logo 30s linear infinite;
+        }
+    </style>
+
+    <!-- Skill Section with Contact Form and Photo -->
+    <section id="contact" class="w-full py-12 px-4 md:px-8 lg:px-16 bg-transparent" data-aos="fade-up">
+        <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+
+            <!-- Foto Kiri -->
+            <div class="relative flex justify-center items-center">
+                <div
+                    class="absolute w-60 h-60 md:w-72 md:h-72 rounded-3xl bg-gradient-to-tr from-blue-800 via-purple-600 to-transparent blur-3xl opacity-50 animate-pulse-slow -z-10">
+                </div>
+                <div class="w-60 h-60 md:w-72 md:h-72 rounded-3xl overflow-hidden animate-float-slow relative z-10">
+                    <img src="notif.png" alt="Contact Me" class="w-full h-full object-cover rounded-3xl" />
+                </div>
+            </div>
+
+            <!-- Formulir -->
+            <div>
+                <div class="mb-6 md:mb-10 pl-1" data-aos="fade-right" data-aos-duration="800">
+                    <h2
+                        class="text-3xl md:text-4xl font-extrabold uppercase inline-block bg-gradient-to-r from-purple-500 to-blue-900 text-transparent bg-clip-text tracking-wide">
+                        CONTACT
+                        <span class="block h-[3px] w-1/3 bg-purple-500 mt-1"></span>
+                    </h2>
+                </div>
+
+                <form id="contact-form" action="https://formspree.io/f/mgvklyba" method="POST"
+                    class="space-y-5 bg-black/20 p-6 rounded-xl shadow-md backdrop-blur-md relative">
+
+                    <div id="loading"
+                        class="absolute inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center rounded-xl hidden z-10">
+                        <div class="animate-spin rounded-full h-8 w-8 border-4 border-t-transparent border-purple-400">
+                        </div>
+                    </div>
+
+                    <!-- Email -->
+                    <div>
+                        <label for="email" class="block mb-1 font-semibold text-white flex items-center gap-2">
+                            <i class="fas fa-envelope text-cyan-400"></i> Email
+                        </label>
+                        <input type="email" name="email" required placeholder="you@example.com"
+                            class="w-full bg-black/40 border border-cyan-400 text-white rounded-lg p-2.5 outline-none focus:ring-2 focus:ring-cyan-500" />
+                    </div>
+
+                    <!-- Subject -->
+                    <div>
+                        <label for="subject" class="block mb-1 font-semibold text-white flex items-center gap-2">
+                            <i class="fas fa-tag text-cyan-400"></i> Subject
+                        </label>
+                        <input type="text" name="subject" required placeholder="Subject"
+                            class="w-full bg-black/40 border border-cyan-400 text-white rounded-lg p-2.5 outline-none focus:ring-2 focus:ring-cyan-500" />
+                    </div>
+
+                    <!-- Message -->
+                    <div>
+                        <label for="message" class="block mb-1 font-semibold text-white flex items-center gap-2">
+                            <i class="fas fa-comment-alt text-cyan-400"></i> Message
+                        </label>
+                        <textarea name="message" required rows="4" placeholder="Write your message here..."
+                            class="w-full bg-black/40 border border-cyan-400 text-white rounded-lg p-2.5 outline-none focus:ring-2 focus:ring-cyan-500 resize-none"></textarea>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit"
+                        class="w-full bg-gradient-to-r from-purple-600 to-blue-700 text-white font-semibold py-2.5 rounded-lg hover:opacity-90 transition duration-300 flex items-center justify-center gap-3">
+                        <i class="fas fa-paper-plane animate-bounce"></i>
+                        <span id="btn-text">Send</span>
+                        <span id="btn-loader"
+                            class="hidden animate-spin w-5 h-5 border-2 border-white border-t-transparent rounded-full"></span>
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Popup Notifikasi Compact -->
+        <div id="popup"
+            class="fixed inset-0 flex items-center justify-center bg-black/50 backdrop-blur-sm z-50 opacity-0 pointer-events-none transition-opacity duration-300 p-4">
+            <div
+                class="relative bg-gradient-to-br from-[#0a1a2a]/90 to-[#6b46c1]/90 text-white px-8 py-6 rounded-2xl shadow-lg flex flex-col items-center gap-4 max-w-xs w-full backdrop-blur-md animate-slideIn">
+                <i class="fas fa-smile-beam text-4xl animate-pulse"></i>
+                <h3 class="text-lg font-bold text-center leading-relaxed tracking-wide px-2">
+                    Terima kasih, pesan Anda sudah terkirim!<br />Akan saya balas secepatnya 😊
+                </h3>
+                <button id="popup-ok-btn"
+                    class="mt-2 px-6 py-2 rounded-full bg-gradient-to-r from-[#0a1a2a] to-[#6b46c1] hover:from-[#6b46c1] hover:to-[#0a1a2a] transition-colors duration-300 text-white font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-purple-600">
+                    OK
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Animations -->
+    <style>
+        @keyframes floatSlow {
+            0% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-12px);
+            }
+
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        .animate-float-slow {
+            animation: floatSlow 6s ease-in-out infinite;
+        }
+
+        @keyframes pulseSlow {
+
+            0%,
+            100% {
+                opacity: 0.5;
+            }
+
+            50% {
+                opacity: 1;
+            }
+        }
+
+        .animate-pulse-slow {
+            animation: pulseSlow 4s ease-in-out infinite;
+        }
+
+        @keyframes slideIn {
+            0% {
+                transform: translateY(-20px);
+                opacity: 0;
+            }
+
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .animate-slideIn {
+            animation: slideIn 0.3s ease forwards;
+        }
+    </style>
+
+    <!-- Script -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script>
+        const form = document.getElementById('contact-form');
+        const popup = document.getElementById('popup');
+        const loading = document.getElementById('loading');
+        const btnText = document.getElementById('btn-text');
+        const btnLoader = document.getElementById('btn-loader');
+        const popupOkBtn = document.getElementById('popup-ok-btn');
+
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            loading.classList.remove('hidden');
+            btnText.classList.add('hidden');
+            btnLoader.classList.remove('hidden');
+
+            fetch(form.action, {
+                method: 'POST',
+                body: new FormData(form),
+                headers: { 'Accept': 'application/json' }
+            }).then(response => {
+                loading.classList.add('hidden');
+                btnText.classList.remove('hidden');
+                btnLoader.classList.add('hidden');
+                if (response.ok) {
+                    popup.classList.remove('opacity-0', 'pointer-events-none');
+                    form.querySelector('button[type="submit"]').disabled = true;
+                    popupOkBtn.focus();
+                } else {
+                    alert("Oops! Something went wrong.");
+                }
+            }).catch(() => {
+                loading.classList.add('hidden');
+                btnText.classList.remove('hidden');
+                btnLoader.classList.add('hidden');
+                alert("Oops! Network error.");
+            });
+        });
+
+        popupOkBtn.addEventListener('click', () => {
+            popup.classList.add('opacity-0', 'pointer-events-none');
+            form.reset();
+            form.querySelector('button[type="submit"]').disabled = false;
+        });
+    </script>
+
+    <!-- Footer Section -->
+    <footer class="bg-gray-900 text-white py-16 mt-24 border-t border-gray-700" data-aos="fade-up">
+        <div class="max-w-[1200px] mx-auto px-6 sm:px-8 lg:px-10">
+
+            <!-- Animated Image on Top -->
+            <div class="flex justify-center mb-10" data-aos="zoom-in">
+                <img src="contact.png" alt="Animated Icon" class="w-32 h-32 sm:w-36 sm:h-36 animate-float" />
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 text-center md:text-left" data-aos="fade-up"
+                data-aos-delay="100">
+                <!-- Social Media Links -->
+                <div data-aos="fade-up" data-aos-delay="200">
+                    <h3 class="text-2xl font-semibold mb-6 text-indigo-400">Follow Me</h3>
+                    <div class="flex justify-center md:justify-start gap-6 text-2xl">
+                        <a href="https://github.com/dfirlaapriliaa" target="_blank"
+                            class="text-gray-400 hover:text-white transition-transform duration-300 hover:scale-110">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/dfirla-apriliani-bb7260316/" target="_blank"
+                            class="text-gray-400 hover:text-white transition-transform duration-300 hover:scale-110">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="https://www.instagram.com/deefacell_/" target="_blank"
+                            class="text-gray-400 hover:text-white transition-transform duration-300 hover:scale-110">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Navbar Links -->
+                <div data-aos="fade-up" data-aos-delay="300">
+                    <h3 class="text-2xl font-semibold mb-6 text-indigo-400">Quick Links</h3>
+                    <ul class="space-y-4">
+                        <li><a href="#home"
+                                class="text-gray-400 hover:text-white transition-colors duration-300">Home</a>
+                        </li>
+                        <li><a href="#about" class="text-gray-400 hover:text-white transition-colors duration-300">About
+                                Me</a></li>
+                        <li><a href="#project"
+                                class="text-gray-400 hover:text-white transition-colors duration-300">Projects</a></li>
+                        <li><a href="#contact"
+                                class="text-gray-400 hover:text-white transition-colors duration-300">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Information -->
+                <div data-aos="fade-up" data-aos-delay="400">
+                    <h3 class="text-2xl font-semibold mb-6 text-indigo-400">Contact Info</h3>
+                    <p class="text-gray-400 mb-3">Email:
+                        <a href="mailto:dfirlaapriliani@gmail.com"
+                            class="hover:text-white transition-colors duration-300">dfirlaapriliani@gmail.com</a>
+                    </p>
+                </div>
+            </div>
+
+            <div class="text-center mt-16 border-t border-gray-700 pt-6" data-aos="fade-up" data-aos-delay="500">
+                <p class="text-gray-500 text-sm">&copy; 2025 D Firla Apriliani. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+
+    <script>
+        AOS.init({
+            once: true, // animasi muncul hanya sekali
+            duration: 1000 // durasi default animasi
+        });
+    </script>
+</body>
+
+</html>
