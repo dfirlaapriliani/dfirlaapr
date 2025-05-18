@@ -156,27 +156,60 @@
     <!-- AUDIO -->
     <audio id="nav-sound" src="https://www.myinstants.com/media/sounds/bruh.mp3"></audio>
 
-    <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <!-- tsparticles CDN & Config -->
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.11.1/tsparticles.bundle.min.js"></script>
     <script>
-        AOS.init({ once: true });
-
-        particlesJS('particles-js', {
+        tsParticles.load("tsparticles", {
+            background: {
+                color: { value: "transparent" }
+            },
+            fpsLimit: 60,
+            interactivity: {
+                events: {
+                    onClick: { enable: true, mode: "push" },
+                    onHover: { enable: true, mode: "repulse" },
+                    resize: true
+                },
+                modes: {
+                    push: { quantity: 6 },
+                    repulse: { distance: 120, duration: 0.4 }
+                }
+            },
             particles: {
-                number: { value: 120 },
-                color: { value: '#7c3aed' },
-                shape: { type: 'circle' },
-                opacity: { value: 0.4 },
-                size: { value: 3 },
-                line_linked: {
+                color: { value: ["#a259ff", "#59ffa2", "#59d1ff", "#ff59c1"] },
+                links: {
+                    color: "#a259ff",
+                    distance: 130,
                     enable: true,
-                    distance: 160,
-                    color: '#7c3aed',
-                    opacity: 0.4,
+                    opacity: 0.3,
                     width: 1
                 },
-                move: { enable: true, speed: 2 }
-            }
+                collisions: { enable: false },
+                move: {
+                    direction: "none",
+                    enable: true,
+                    outModes: { default: "bounce" },
+                    random: true,
+                    speed: 1.5,
+                    straight: false
+                },
+                number: {
+                    density: { enable: true, area: 600 },
+                    value: 150
+                },
+                opacity: {
+                    value: 0.5,
+                    random: true,
+                    anim: { enable: true, speed: 0.5, opacity_min: 0.1, sync: false }
+                },
+                shape: { type: "circle" },
+                size: {
+                    value: { min: 1, max: 4 },
+                    random: true,
+                    anim: { enable: true, speed: 2, size_min: 0.3, sync: false }
+                }
+            },
+            detectRetina: true
         });
 
         const drawer = document.getElementById("drawer");
@@ -1118,12 +1151,13 @@
 
     <footer class="bg-black/30 backdrop-blur-md py-14 mt-16 border-t border-gray-700 text-white z-10">
         <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-10">
-
-            <div
-                class="flex flex-col md:flex-row justify-center md:justify-between text-center md:text-left md:gap-12 gap-10">
+    
+            <!-- Footer Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 text-center md:text-left">
+    
                 <!-- Follow Me -->
-                <div class="space-y-3">
-                    <h3 class="text-2xl font-semibold text-indigo-400">Follow Me</h3>
+                <div>
+                    <h3 class="text-2xl font-semibold text-indigo-400 mb-4">Follow Me</h3>
                     <div class="flex justify-center md:justify-start gap-5 text-2xl">
                         <a href="https://github.com/dfirlaapriliaa" target="_blank"
                             class="text-gray-400 hover:text-white transition-transform duration-300 hover:scale-110">
@@ -1139,36 +1173,36 @@
                         </a>
                     </div>
                 </div>
-
+    
                 <!-- Quick Links -->
-                <div class="space-y-3">
-                    <h3 class="text-2xl font-semibold text-indigo-400">Quick Links</h3>
-                    <ul class="flex flex-col gap-1.5 text-gray-400 text-base">
+                <div>
+                    <h3 class="text-2xl font-semibold text-indigo-400 mb-4">Quick Links</h3>
+                    <ul class="space-y-2 text-gray-400 text-base">
                         <li><a href="#home" class="hover:text-white transition-colors duration-300">Home</a></li>
                         <li><a href="#about" class="hover:text-white transition-colors duration-300">About Me</a></li>
                         <li><a href="#project" class="hover:text-white transition-colors duration-300">Projects</a></li>
                         <li><a href="#contact" class="hover:text-white transition-colors duration-300">Contact</a></li>
                     </ul>
                 </div>
-
+    
                 <!-- Contact Info -->
-                <div class="space-y-3">
-                    <h3 class="text-2xl font-semibold text-indigo-400">Contact Info</h3>
-                    <div class="text-gray-400 space-y-0.5">
-                        <p>Email:</p>
-                        <a href="mailto:dfirlaapriliani@gmail.com"
-                            class="hover:text-white transition-colors duration-300 block">
-                            dfirlaapriliani@gmail.com
-                        </a>
-                    </div>
+                <div>
+                    <h3 class="text-2xl font-semibold text-indigo-400 mb-4">Contact Info</h3>
+                    <p class="text-gray-400 mb-1">Email:</p>
+                    <a href="mailto:dfirlaapriliani@gmail.com"
+                        class="text-gray-300 hover:text-white transition-colors duration-300 block break-all">
+                        dfirlaapriliani@gmail.com
+                    </a>
                 </div>
+    
             </div>
-
+    
             <!-- Copyright -->
-            <div class="text-center mt-12 border-t border-gray-700 pt-5">
-                <p class="text-gray-500 text-sm">&copy; 2025 D Firla Apriliani. All rights reserved.</p>
+            <div class="text-center mt-12 border-t border-gray-700 pt-6">
+                <p class="text-gray-500 text-sm">&copy; 2025 <span class="text-white">D Firla Apriliani</span>. All rights
+                    reserved.</p>
             </div>
-
+    
         </div>
     </footer>
 
