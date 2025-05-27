@@ -7,7 +7,7 @@
     <title>D FIRLA APRILIANI</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/typeit@8.7.1/dist/index.umd.js"></script>
-    <link rel="icon" type="image/png" href="assets/dega.png" />
+    <link rel="icon" type="image/png" href="assets/dega.png" /> 
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
@@ -15,12 +15,91 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
 
     <style>
+        :root {
+            /* Default Purple Theme */
+            --bg-color: #0f0f18;
+            --grid-color: rgba(50, 60, 100, 0.2);
+            --primary-color: #9333ea;
+            --secondary-color: #3b82f6;
+            --accent-color: #a259ff;
+            --nav-bg: #0f0f18cc;
+            --nav-via: #1c1f3bcc;
+            --border-color: #6366f1;
+        }
+
+        [data-theme="purple"] {
+            --bg-color: #0f0f18;
+            --grid-color: rgba(50, 60, 100, 0.2);
+            --primary-color: #9333ea;
+            --secondary-color: #3b82f6;
+            --accent-color: #a259ff;
+            --nav-bg: #0f0f18cc;
+            --nav-via: #1c1f3bcc;
+            --border-color: #6366f1;
+        }
+
+        [data-theme="ocean"] {
+            --bg-color: #0a1a2a;
+            --grid-color: rgba(20, 80, 120, 0.3);
+            --primary-color: #06b6d4;
+            --secondary-color: #0ea5e9;
+            --accent-color: #22d3ee;
+            --nav-bg: #0a1a2acc;
+            --nav-via: #1e3a5bcc;
+            --border-color: #0ea5e9;
+        }
+
+        [data-theme="sunset"] {
+            --bg-color: #1a0f0a;
+            --grid-color: rgba(120, 50, 20, 0.3);
+            --primary-color: #f97316;
+            --secondary-color: #dc2626;
+            --accent-color: #fbbf24;
+            --nav-bg: #1a0f0acc;
+            --nav-via: #3b1f0bcc;
+            --border-color: #f97316;
+        }
+
+        [data-theme="forest"] {
+            --bg-color: #0a1a0f;
+            --grid-color: rgba(20, 120, 50, 0.3);
+            --primary-color: #10b981;
+            --secondary-color: #059669;
+            --accent-color: #34d399;
+            --nav-bg: #0a1a0fcc;
+            --nav-via: #1b3b23cc;
+            --border-color: #10b981;
+        }
+
+        [data-theme="cosmic"] {
+            --bg-color: #0f0a1a;
+            --grid-color: rgba(80, 20, 120, 0.3);
+            --primary-color: #a855f7;
+            --secondary-color: #ec4899;
+            --accent-color: #f472b6;
+            --nav-bg: #0f0a1acc;
+            --nav-via: #2b1b3bcc;
+            --border-color: #a855f7;
+        }
+
+        [data-theme="neon"] {
+            --bg-color: #0a0a0a;
+            --grid-color: rgba(0, 255, 150, 0.2);
+            --primary-color: #00ff94;
+            --secondary-color: #00d4ff;
+            --accent-color: #ff006e;
+            --nav-bg: #0a0a0acc;
+            --nav-via: #1a1a1acc;
+            --border-color: #00ff94;
+        }
+
         body {
             font-family: 'Poppins', sans-serif;
-            background-color: #0f0f18 !important;
-            background-image: linear-gradient(rgba(50, 60, 100, 0.2) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(50, 60, 100, 0.2) 1px, transparent 1px);
+            background-color: var(--bg-color) !important;
+            background-image: linear-gradient(var(--grid-color) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
             background-size: 40px 40px;
+            transition: all 0.5s ease;
         }
 
         #particles-js {
@@ -33,7 +112,7 @@
         }
 
         .gradient-text {
-            background: linear-gradient(90deg, #9333ea, #3b82f6, #9333ea);
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color), var(--primary-color));
             background-size: 300% 300%;
             background-clip: text;
             -webkit-background-clip: text;
@@ -45,11 +124,9 @@
             0% {
                 background-position: 0% 50%;
             }
-
             50% {
                 background-position: 100% 50%;
             }
-
             100% {
                 background-position: 0% 50%;
             }
@@ -67,7 +144,7 @@
             bottom: -2px;
             width: 0;
             height: 2px;
-            background: linear-gradient(90deg, #9333ea, #3b82f6);
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
             transition: width 0.3s ease;
         }
 
@@ -79,8 +156,18 @@
         .shadow-3d {
             box-shadow:
                 0 10px 30px rgba(0, 0, 0, 0.4),
-                0 4px 12px rgba(147, 51, 234, 0.3),
-                0 2px 6px rgba(59, 130, 246, 0.2);
+                0 4px 12px color-mix(in srgb, var(--primary-color) 30%, transparent),
+                0 2px 6px color-mix(in srgb, var(--secondary-color) 20%, transparent);
+        }
+
+        .nav-bg {
+            background: linear-gradient(to right, var(--nav-bg), var(--nav-via), var(--nav-bg));
+            border-color: var(--border-color);
+        }
+
+        .drawer-bg {
+            background: linear-gradient(135deg, var(--nav-bg), var(--nav-via), var(--nav-bg));
+            border-color: var(--border-color);
         }
 
         .menu-icon {
@@ -88,31 +175,108 @@
         }
 
         @keyframes bounce {
-
-            0%,
-            100% {
+            0%, 100% {
                 transform: translateY(0);
             }
-
             50% {
                 transform: translateY(-4px);
+            }
+        }
+
+        .theme-selector {
+            position: relative;
+        }
+
+        .theme-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: var(--nav-bg);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 8px;
+            margin-top: 8px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            min-width: 180px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .theme-dropdown.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .theme-option {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 14px;
+        }
+
+        .theme-option:hover {
+            background: color-mix(in srgb, var(--primary-color) 20%, transparent);
+        }
+
+        .theme-preview {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .theme-preview.purple {
+            background: linear-gradient(45deg, #9333ea, #3b82f6);
+        }
+
+        .theme-preview.ocean {
+            background: linear-gradient(45deg, #06b6d4, #0ea5e9);
+        }
+
+        .theme-preview.sunset {
+            background: linear-gradient(45deg, #f97316, #dc2626);
+        }
+
+        .theme-preview.forest {
+            background: linear-gradient(45deg, #10b981, #059669);
+        }
+
+        .theme-preview.cosmic {
+            background: linear-gradient(45deg, #a855f7, #ec4899);
+        }
+
+        .theme-preview.neon {
+            background: linear-gradient(45deg, #00ff94, #00d4ff);
+        }
+
+        @media (max-width: 768px) {
+            .theme-dropdown {
+                right: auto;
+                left: 0;
+                min-width: 160px;
             }
         }
     </style>
 </head>
 
-<body class="text-white font-bold relative overflow-x-hidden">
+<body class="text-white font-bold relative overflow-x-hidden" data-theme="purple">
     <div id="particles-js"></div>
 
     <!--navbar-->
     <nav class="sticky top-0 z-50 w-full flex justify-center pt-6" data-aos="fade-down" data-aos-duration="1000">
-        <div
-            class="flex items-center justify-between w-[90%] max-w-6xl px-6 py-3 rounded-full shadow-lg backdrop-blur-md bg-gradient-to-r from-[#0f0f18cc] via-[#1c1f3bcc] to-[#0f0f18cc] border border-indigo-500">
+        <div class="flex items-center justify-between w-[90%] max-w-6xl px-6 py-3 rounded-full shadow-lg backdrop-blur-md nav-bg border">
             <div class="flex items-center gap-2 text-xl font-bold gradient-text">
                 <img src="assets/dega.png" alt="Logo D" class="w-7 h-7 object-contain" />
                 FIRLA APRILIANI
             </div>
-
 
             <!-- Desktop Menu -->
             <div class="hidden md:flex items-center gap-6">
@@ -122,6 +286,40 @@
                 <a href="#certificate" class="nav-link gradient-text underline-anim">Certificate</a>
                 <a href="#skill" class="nav-link gradient-text underline-anim">Skill</a>
                 <a href="#contact" class="nav-link gradient-text underline-anim">Contact</a>
+                
+                <!-- Theme Selector -->
+                <div class="theme-selector">
+                    <button id="theme-toggle" class="text-xl text-white hover:text-purple-400 transition">
+                        <i class="fas fa-palette"></i>
+                    </button>
+                    <div id="theme-dropdown" class="theme-dropdown">
+                        <div class="theme-option" data-theme="purple">
+                            <div class="theme-preview purple"></div>
+                            <span>Purple</span>
+                        </div>
+                        <div class="theme-option" data-theme="ocean">
+                            <div class="theme-preview ocean"></div>
+                            <span>Ocean</span>
+                        </div>
+                        <div class="theme-option" data-theme="sunset">
+                            <div class="theme-preview sunset"></div>
+                            <span>Sunset</span>
+                        </div>
+                        <div class="theme-option" data-theme="forest">
+                            <div class="theme-preview forest"></div>
+                            <span>Forest</span>
+                        </div>
+                        <div class="theme-option" data-theme="cosmic">
+                            <div class="theme-preview cosmic"></div>
+                            <span>Cosmic</span>
+                        </div>
+                        <div class="theme-option" data-theme="neon">
+                            <div class="theme-preview neon"></div>
+                            <span>Neon</span>
+                        </div>
+                    </div>
+                </div>
+                
                 <button id="toggle-sound" class="text-xl text-white hover:text-purple-400 transition">
                     <i id="sound-icon" class="fas fa-volume-up"></i>
                 </button>
@@ -135,9 +333,8 @@
     </nav>
 
     <!-- MOBILE DRAWER -->
-    <div id="drawer"
-        class="fixed top-0 left-0 h-full w-64 backdrop-blur-md bg-gradient-to-br from-[#0f0f18cc] via-[#1c1f3bcc] to-[#0f0f18cc] border-r border-blue-500 shadow-3d transform -translate-x-full transition-transform duration-300 z-[999] md:hidden rounded-r-2xl">
-        <div class="flex justify-between items-center p-4 border-b border-blue-500">
+    <div id="drawer" class="fixed top-0 left-0 h-full w-64 backdrop-blur-md drawer-bg border-r shadow-3d transform -translate-x-full transition-transform duration-300 z-[999] md:hidden rounded-r-2xl">
+        <div class="flex justify-between items-center p-4 border-b" style="border-color: var(--border-color);">
             <div class="gradient-text text-lg font-bold">Menu</div>
             <button id="close-drawer" class="text-white">
                 <i class="fas fa-times text-lg"></i>
@@ -150,7 +347,39 @@
             <li><a href="#certificate" class="nav-link gradient-text underline-anim">Certificate</a></li>
             <li><a href="#skill" class="nav-link gradient-text underline-anim">Skill</a></li>
             <li><a href="#contact" class="nav-link gradient-text underline-anim">Contact</a></li>
-            <li>
+            <li class="flex items-center gap-4">
+                <!-- Mobile Theme Selector -->
+                <div class="theme-selector">
+                    <button id="theme-toggle-mobile" class="text-white hover:text-purple-400" title="Change Theme">
+                        <i class="fas fa-palette"></i>
+                    </button>
+                    <div id="theme-dropdown-mobile" class="theme-dropdown">
+                        <div class="theme-option" data-theme="purple">
+                            <div class="theme-preview purple"></div>
+                            <span>Purple</span>
+                        </div>
+                        <div class="theme-option" data-theme="ocean">
+                            <div class="theme-preview ocean"></div>
+                            <span>Ocean</span>
+                        </div>
+                        <div class="theme-option" data-theme="sunset">
+                            <div class="theme-preview sunset"></div>
+                            <span>Sunset</span>
+                        </div>
+                        <div class="theme-option" data-theme="forest">
+                            <div class="theme-preview forest"></div>
+                            <span>Forest</span>
+                        </div>
+                        <div class="theme-option" data-theme="cosmic">
+                            <div class="theme-preview cosmic"></div>
+                            <span>Cosmic</span>
+                        </div>
+                        <div class="theme-option" data-theme="neon">
+                            <div class="theme-preview neon"></div>
+                            <span>Neon</span>
+                        </div>
+                    </div>
+                </div>
                 <button id="toggle-sound-mobile" class="text-white hover:text-purple-400" title="Toggle Sound">
                     <i id="sound-icon-mobile" class="fas fa-volume-up"></i>
                 </button>
@@ -164,58 +393,94 @@
     <!-- tsparticles CDN & Config -->
     <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.11.1/tsparticles.bundle.min.js"></script>
     <script>
-        tsParticles.load("tsparticles", {
-            background: {
-                color: { value: "transparent" }
+        let particlesInstance;
+        
+        const themeParticleConfigs = {
+            purple: {
+                colors: ["#a259ff", "#59ffa2", "#59d1ff", "#ff59c1"],
+                linkColor: "#a259ff"
             },
-            fpsLimit: 60,
-            interactivity: {
-                events: {
-                    onClick: { enable: true, mode: "push" },
-                    onHover: { enable: true, mode: "repulse" },
-                    resize: true
-                },
-                modes: {
-                    push: { quantity: 6 },
-                    repulse: { distance: 120, duration: 0.4 }
-                }
+            ocean: {
+                colors: ["#06b6d4", "#0ea5e9", "#22d3ee", "#0891b2"],
+                linkColor: "#06b6d4"
             },
-            particles: {
-                color: { value: ["#a259ff", "#59ffa2", "#59d1ff", "#ff59c1"] },
-                links: {
-                    color: "#a259ff",
-                    distance: 130,
-                    enable: true,
-                    opacity: 0.3,
-                    width: 1
-                },
-                collisions: { enable: false },
-                move: {
-                    direction: "none",
-                    enable: true,
-                    outModes: { default: "bounce" },
-                    random: true,
-                    speed: 1.5,
-                    straight: false
-                },
-                number: {
-                    density: { enable: true, area: 600 },
-                    value: 150
-                },
-                opacity: {
-                    value: 0.5,
-                    random: true,
-                    anim: { enable: true, speed: 0.5, opacity_min: 0.1, sync: false }
-                },
-                shape: { type: "circle" },
-                size: {
-                    value: { min: 1, max: 4 },
-                    random: true,
-                    anim: { enable: true, speed: 2, size_min: 0.3, sync: false }
-                }
+            sunset: {
+                colors: ["#f97316", "#dc2626", "#fbbf24", "#ea580c"],
+                linkColor: "#f97316"
             },
-            detectRetina: true
-        });
+            forest: {
+                colors: ["#10b981", "#059669", "#34d399", "#047857"],
+                linkColor: "#10b981"
+            },
+            cosmic: {
+                colors: ["#a855f7", "#ec4899", "#f472b6", "#9333ea"],
+                linkColor: "#a855f7"
+            },
+            neon: {
+                colors: ["#00ff94", "#00d4ff", "#ff006e", "#39ff14"],
+                linkColor: "#00ff94"
+            }
+        };
+
+        function loadParticles(theme = 'purple') {
+            const config = themeParticleConfigs[theme];
+            
+            tsParticles.load("particles-js", {
+                background: {
+                    color: { value: "transparent" }
+                },
+                fpsLimit: 60,
+                interactivity: {
+                    events: {
+                        onClick: { enable: true, mode: "push" },
+                        onHover: { enable: true, mode: "repulse" },
+                        resize: true
+                    },
+                    modes: {
+                        push: { quantity: 6 },
+                        repulse: { distance: 120, duration: 0.4 }
+                    }
+                },
+                particles: {
+                    color: { value: config.colors },
+                    links: {
+                        color: config.linkColor,
+                        distance: 130,
+                        enable: true,
+                        opacity: 0.3,
+                        width: 1
+                    },
+                    collisions: { enable: false },
+                    move: {
+                        direction: "none",
+                        enable: true,
+                        outModes: { default: "bounce" },
+                        random: true,
+                        speed: 1.5,
+                        straight: false
+                    },
+                    number: {
+                        density: { enable: true, area: 600 },
+                        value: 150
+                    },
+                    opacity: {
+                        value: 0.5,
+                        random: true,
+                        anim: { enable: true, speed: 0.5, opacity_min: 0.1, sync: false }
+                    },
+                    shape: { type: "circle" },
+                    size: {
+                        value: { min: 1, max: 4 },
+                        random: true,
+                        anim: { enable: true, speed: 2, size_min: 0.3, sync: false }
+                    }
+                },
+                detectRetina: true
+            });
+        }
+
+        // Initialize particles
+        loadParticles();
 
         const drawer = document.getElementById("drawer");
         const menuToggle = document.getElementById("menu-toggle");
@@ -227,8 +492,17 @@
         const soundToggleMobile = document.getElementById("toggle-sound-mobile");
         const soundIconMobile = document.getElementById("sound-icon-mobile");
 
-        let isMuted = false;
+        // Theme elements
+        const themeToggle = document.getElementById("theme-toggle");
+        const themeDropdown = document.getElementById("theme-dropdown");
+        const themeToggleMobile = document.getElementById("theme-toggle-mobile");
+        const themeDropdownMobile = document.getElementById("theme-dropdown-mobile");
+        const themeOptions = document.querySelectorAll(".theme-option");
 
+        let isMuted = false;
+        let currentTheme = 'purple';
+
+        // Menu functionality
         menuToggle?.addEventListener("click", () => {
             drawer.classList.remove("-translate-x-full");
         });
@@ -247,6 +521,7 @@
             });
         });
 
+        // Sound functionality
         const toggleSound = () => {
             isMuted = !isMuted;
             soundIcon.classList.toggle("fa-volume-up", !isMuted);
@@ -258,6 +533,45 @@
         soundToggle?.addEventListener("click", toggleSound);
         soundToggleMobile?.addEventListener("click", toggleSound);
 
+        // Theme functionality
+        const setTheme = (theme) => {
+            document.body.setAttribute('data-theme', theme);
+            currentTheme = theme;
+            loadParticles(theme);
+            
+            // Close dropdowns
+            themeDropdown.classList.remove('active');
+            themeDropdownMobile.classList.remove('active');
+        };
+
+        themeToggle?.addEventListener("click", (e) => {
+            e.stopPropagation();
+            themeDropdown.classList.toggle('active');
+            themeDropdownMobile.classList.remove('active');
+        });
+
+        themeToggleMobile?.addEventListener("click", (e) => {
+            e.stopPropagation();
+            themeDropdownMobile.classList.toggle('active');
+            themeDropdown.classList.remove('active');
+        });
+
+        themeOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                const theme = option.getAttribute('data-theme');
+                setTheme(theme);
+            });
+        });
+
+        // Close dropdowns when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.theme-selector')) {
+                themeDropdown.classList.remove('active');
+                themeDropdownMobile.classList.remove('active');
+            }
+        });
+
+        // Navigation highlighting
         function highlightActiveLink() {
             const sections = ["home", "about", "project", "certificate", "skill", "contact"];
             let current = "";
@@ -280,7 +594,13 @@
 
         window.addEventListener("scroll", highlightActiveLink);
         window.addEventListener("load", highlightActiveLink);
+
+        // Initialize AOS
+        if (typeof AOS !== 'undefined') {
+            AOS.init();
+        }
     </script>
+
 
     <!-- Hero Section -->
     <section class="min-h-screen flex items-center justify-center px-6 pt-16 md:px-10 md:pt-24 lg:px-24" id="home">
@@ -351,7 +671,6 @@
                         .delete()
                         .go();
                 </script>
-
 
                 <!-- Subtitle -->
                 <h2 class="text-base sm:text-lg mt-2 text-slate-300">Take Steps to Develop</h2>
