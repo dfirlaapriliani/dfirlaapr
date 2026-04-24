@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Projects - D FIRLA APRILIANI</title>
+    <meta name="description" content="Project portfolio Dfirla Apriliani. Lihat karya-karya web development profesional.">
+    <meta name="author" content="Dfirl A">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="assets/dega.png" />
+    
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+<body class="text-white font-bold overflow-x-hidden relative" data-theme="purple">
+    
+    <div id="particles-js"></div>
+
+    <!-- NAVBAR -->
+    <nav class="sticky top-0 z-50 w-full flex justify-center pt-6" data-aos="fade-down" data-aos-duration="1000">
+        <div class="flex items-center justify-between w-[90%] max-w-6xl px-6 py-3 rounded-full shadow-lg backdrop-blur-md nav-bg border">
+            <div class="flex items-center gap-2 text-xl font-bold gradient-text">
+                <img src="assets/dega.png" alt="Logo D" class="w-7 h-7 object-contain" />
+                FIRLA APRILIANI
+            </div>
+
+            <div class="hidden md:flex items-center gap-6">
+                <a href="index.html#home" class="nav-link gradient-text underline-anim">Home</a>
+                <a href="index.html#about" class="nav-link gradient-text underline-anim">About</a>
+                <a href="projects.html" class="nav-link gradient-text underline-anim active">Project</a>
+                <a href="certificates.html" class="nav-link gradient-text underline-anim">Certificate</a>
+                <a href="skills.html" class="nav-link gradient-text underline-anim">Skill</a>
+                <a href="contact.html" class="nav-link gradient-text underline-anim">Contact</a>
+
+                <div class="theme-selector">
+                    <button id="theme-toggle" class="text-xl text-white hover:text-purple-400 transition">
+                        <i class="fas fa-palette"></i>
+                    </button>
+                    <div id="theme-dropdown" class="theme-dropdown">
+                        <div class="theme-option" data-theme="purple"><div class="theme-preview purple"></div><span>Purple</span></div>
+                        <div class="theme-option" data-theme="ocean"><div class="theme-preview ocean"></div><span>Ocean</span></div>
+                        <div class="theme-option" data-theme="sunset"><div class="theme-preview sunset"></div><span>Sunset</span></div>
+                        <div class="theme-option" data-theme="forest"><div class="theme-preview forest"></div><span>Forest</span></div>
+                        <div class="theme-option" data-theme="cosmic"><div class="theme-preview cosmic"></div><span>Cosmic</span></div>
+                        <div class="theme-option" data-theme="neon"><div class="theme-preview neon"></div><span>Neon</span></div>
+                    </div>
+                </div>
+
+                <button id="toggle-sound" class="text-xl text-white hover:text-purple-400 transition">
+                    <i id="sound-icon" class="fas fa-volume-up"></i>
+                </button>
+            </div>
+
+            <button id="menu-toggle" class="md:hidden text-white text-2xl menu-icon">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- MOBILE DRAWER -->
+    <div id="drawer" class="drawer-bg">
+        <div class="flex justify-between items-center p-4 border-b" style="border-color: var(--border-color);">
+            <div class="gradient-text text-lg font-bold">Menu</div>
+            <button id="close-drawer" class="text-white"><i class="fas fa-times text-lg"></i></button>
+        </div>
+        <ul class="flex flex-col text-left pl-6 space-y-6 mt-6 text-white font-semibold">
+            <li><a href="index.html#home" class="nav-link gradient-text underline-anim">Home</a></li>
+            <li><a href="index.html#about" class="nav-link gradient-text underline-anim">About</a></li>
+            <li><a href="projects.html" class="nav-link gradient-text underline-anim active">Project</a></li>
+            <li><a href="certificates.html" class="nav-link gradient-text underline-anim">Certificate</a></li>
+            <li><a href="skills.html" class="nav-link gradient-text underline-anim">Skill</a></li>
+            <li><a href="contact.html" class="nav-link gradient-text underline-anim">Contact</a></li>
+            <li class="flex items-center gap-4">
+                <div class="theme-selector">
+                    <button id="theme-toggle-mobile" class="text-white hover:text-purple-400"><i class="fas fa-palette"></i></button>
+                    <div id="theme-dropdown-mobile" class="theme-dropdown">
+                        <div class="theme-option" data-theme="purple"><div class="theme-preview purple"></div><span>Purple</span></div>
+                        <div class="theme-option" data-theme="ocean"><div class="theme-preview ocean"></div><span>Ocean</span></div>
+                        <div class="theme-option" data-theme="sunset"><div class="theme-preview sunset"></div><span>Sunset</span></div>
+                        <div class="theme-option" data-theme="forest"><div class="theme-preview forest"></div><span>Forest</span></div>
+                        <div class="theme-option" data-theme="cosmic"><div class="theme-preview cosmic"></div><span>Cosmic</span></div>
+                        <div class="theme-option" data-theme="neon"><div class="theme-preview neon"></div><span>Neon</span></div>
+                    </div>
+                </div>
+                <button id="toggle-sound-mobile" class="text-white hover:text-purple-400"><i id="sound-icon-mobile" class="fas fa-volume-up"></i></button>
+            </li>
+        </ul>
+    </div>
+
+    <audio id="nav-sound" src="https://www.myinstants.com/media/sounds/bruh.mp3"></audio>
+
+    <!-- PROJECT SECTION -->
+    <section id="project" class="py-16 px-4 md:px-8 lg:px-16 bg-transparent">
+        <div class="max-w-screen-xl mx-auto w-full lg:w-[95%]">
+            <div class="mb-12 md:mb-16 pl-2" data-aos="fade-right" data-aos-duration="1000">
+                <h2 class="text-4xl md:text-5xl font-extrabold uppercase inline-block bg-gradient-to-r from-purple-500 to-blue-900 text-transparent bg-clip-text tracking-wide">
+                    PROJECT
+                    <span class="block h-[3px] w-1/2 bg-purple-500 mt-2"></span>
+                </h2>
+            </div>
+
+            <div class="pt-1 pb-10">
+                <div class="max-w-6xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+                    
+                    <!-- Project 1: Kedai Makanan -->
+                    <div class="rounded-xl overflow-hidden border border-white/10 bg-gradient-to-br from-[#1a2238] via-[#302244] to-[#1a1a2e] backdrop-blur-md shadow-[0_6px_18px_rgba(65,60,100,0.3)] hover:shadow-[0_10px_25px_rgba(110,90,160,0.4)] transition-all duration-300" data-aos="zoom-in-up">
+                        <img src="assets/waroeng.png" alt="Kedai Makanan" class="w-full h-36 object-cover cursor-pointer" onclick="openModal('assets/waroeng.png', 'Kedai Makanan', 'Website kedai makanan digital dengan tampilan modern dan responsif.')" />
+                        <div class="p-4">
+                            <h3 class="text-lg font-semibold text-white mb-1">Kedai Makanan</h3>
+                            <p class="text-sm text-gray-300">Kedai makanan digital</p>
+                            <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 w-full mt-3">
+                                <a href="https://kulinerbyfirla.netlify.app/" target="_blank" class="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2 text-sm rounded-md border border-purple-400 text-purple-300 hover:bg-purple-500 hover:text-white transition duration-200 text-center">
+                                    <i class="fas fa-play"></i> Demo
+                                </a>
+                                <a href="https://github.com/dfirlaapriliani/kuliner.git" target="_blank" class="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2 text-sm rounded-md border border-purple-400 text-purple-300 hover:bg-purple-500 hover:text-white transition duration-200 text-center">
+                                    <i class="fab fa-github"></i> GitHub
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 2: Sistem Jasa Online -->
+                    <div class="relative rounded-xl overflow-hidden border border-white/10 bg-gradient-to-br from-[#1a2238] via-[#302244] to-[#1a1a2e] backdrop-blur-md shadow-[0_6px_18px_rgba(65,60,100,0.3)] hover:shadow-[0_10px_25px_rgba(110,90,160,0.4)] transition-all duration-300" data-aos="zoom-in-up">
+                        <span class="absolute top-2 left-2 z-10 flex items-center gap-1 bg-yellow-400/80 backdrop-blur-md text-black text-xs font-semibold px-2.5 py-1.5 rounded-md shadow-md border border-yellow-600 animate-pulse">
+                            <i class="fas fa-exclamation-triangle text-yellow-900"></i> Masa Perbaikan!
+                        </span>
+                        <img src="assets/jasline.png" alt="Sistem Jasa Online" class="w-full h-36 object-cover cursor-pointer" onclick="openModal('assets/jasline.png', 'Sistem Jasa Online', 'Sistem jasa online profesional. Harap akses di desktop!')" />
+                        <div class="p-4">
+                            <h3 class="text-lg font-semibold text-white mb-1">Sistem Jasa Online</h3>
+                            <p class="text-sm text-gray-300">Harap akses didesktop!</p>
+                            <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 w-full mt-3">
+                                <a href="https://sistemjasline.netlify.app/" target="_blank" class="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2 text-sm rounded-md border border-purple-400 text-purple-300 hover:bg-purple-500 hover:text-white transition duration-200 text-center">
+                                    <i class="fas fa-play"></i> Demo
+                                </a>
+                                <a href="https://github.com/dfirlaapriliani/SISTEM_JASA_ONLINE.git" target="_blank" class="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2 text-sm rounded-md border border-purple-400 text-purple-300 hover:bg-purple-500 hover:text-white transition duration-200 text-center">
+                                    <i class="fab fa-github"></i> GitHub
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 3: Gallery Firla -->
+                    <div class="relative rounded-xl overflow-hidden border border-white/10 bg-gradient-to-br from-[#1a2238] via-[#302244] to-[#1a1a2e] backdrop-blur-md shadow-[0_6px_18px_rgba(65,60,100,0.3)] hover:shadow-[0_10px_25px_rgba(110,90,160,0.4)] transition-all duration-300" data-aos="zoom-in-up">
+                        <span class="absolute top-2 left-2 z-10 flex items-center gap-1 bg-yellow-400/80 backdrop-blur-md text-black text-xs font-semibold px-2.5 py-1.5 rounded-md shadow-md border border-yellow-600 animate-pulse">
+                            <i class="fas fa-exclamation-triangle text-yellow-900"></i> Masa Perbaikan!
+                        </span>
+                        <img src="assets/gallery.png" alt="Gallery Firla" class="w-full h-36 object-cover cursor-pointer" onclick="openModal('assets/gallery.png', 'Gallery Firla', 'Website informasi detail tentang saya.')" />
+                        <div class="p-4">
+                            <h3 class="text-lg font-semibold text-white mb-1">Gallery Firla</h3>
+                            <p class="text-sm text-gray-300">Website informasi detail tentang saya</p>
+                            <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 w-full mt-3">
+                                <a href="https://galleryfirla.netlify.app/" target="_blank" class="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2 text-sm rounded-md border border-purple-400 text-purple-300 hover:bg-purple-500 hover:text-white transition duration-200 text-center">
+                                    <i class="fas fa-play"></i> Demo
+                                </a>
+                                <a href="https://github.com/dfirlaapriliani/my_gallery.git" target="_blank" class="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2 text-sm rounded-md border border-purple-400 text-purple-300 hover:bg-purple-500 hover:text-white transition duration-200 text-center">
+                                    <i class="fab fa-github"></i> GitHub
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 4: Admin Dashboard -->
+                    <div class="rounded-xl overflow-hidden border border-white/10 bg-gradient-to-br from-[#1a2238] via-[#302244] to-[#1a1a2e] backdrop-blur-md shadow-[0_6px_18px_rgba(65,60,100,0.3)] hover:shadow-[0_10px_25px_rgba(110,90,160,0.4)] transition-all duration-300 project-item hidden" data-aos="zoom-in-up">
+                        <img src="assets/ads.png" alt="Admin Dashboard" class="w-full h-36 object-cover cursor-pointer" onclick="openModal('assets/ads.png', 'Admin Dashboard', 'Website dashboard admin portfolio.')" />
+                        <div class="p-4">
+                            <h3 class="text-lg font-semibold text-white mb-1">Admin Dashboard</h3>
+                            <p class="text-sm text-gray-300">Website Dashmin Portfolio</p>
+                            <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 w-full mt-3">
+                                <a href="https://dashminvel.netlify.app/" target="_blank" class="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2 text-sm rounded-md border border-purple-400 text-purple-300 hover:bg-purple-500 hover:text-white transition duration-200 text-center">
+                                    <i class="fas fa-play"></i> Demo
+                                </a>
+                                <a href="https://github.com/dfirlaapriliani/admindashboard.git" target="_blank" class="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2 text-sm rounded-md border border-purple-400 text-purple-300 hover:bg-purple-500 hover:text-white transition duration-200 text-center">
+                                    <i class="fab fa-github"></i> GitHub
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 5: Lunar Scope -->
+                    <div class="rounded-xl overflow-hidden border border-white/10 bg-gradient-to-br from-[#1a2238] via-[#302244] to-[#1a1a2e] backdrop-blur-md shadow-[0_6px_18px_rgba(65,60,100,0.3)] hover:shadow-[0_10px_25px_rgba(110,90,160,0.4)] transition-all duration-300 project-item hidden" data-aos="zoom-in-up">
+                        <img src="assets/7.png" alt="Lunar Scope" class="w-full h-36 object-cover cursor-pointer" onclick="openModal('assets/7.png', 'Lunar Scope', 'Website fase bulan di berbagai dunia.')" />
+                        <div class="p-4">
+                            <h3 class="text-lg font-semibold text-white mb-1">Lunar Scope</h3>
+                            <p class="text-sm text-gray-300">Fase bulan diberbagai Dunia</p>
+                            <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 w-full mt-3">
+                                <a href="https://lunarscope.netlify.app/" target="_blank" class="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2 text-sm rounded-md border border-purple-400 text-purple-300 hover:bg-purple-500 hover:text-white transition duration-200 text-center">
+                                    <i class="fas fa-play"></i> Demo
+                                </a>
+                                <a href="https://github.com/dfirlaapriliani/lunarscoo" target="_blank" class="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2 text-sm rounded-md border border-purple-400 text-purple-300 hover:bg-purple-500 hover:text-white transition duration-200 text-center">
+                                    <i class="fab fa-github"></i> GitHub
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 6: Calculator Cinta -->
+                    <div class="rounded-xl overflow-hidden border border-white/10 bg-gradient-to-br from-[#1a2238] via-[#302244] to-[#1a1a2e] backdrop-blur-md shadow-[0_6px_18px_rgba(65,60,100,0.3)] hover:shadow-[0_10px_25px_rgba(110,90,160,0.4)] transition-all duration-300 project-item hidden" data-aos="zoom-in-up">
+                        <img src="assets/8.png" alt="Calculator Cinta" class="w-full h-36 object-cover cursor-pointer" onclick="openModal('assets/8.png', 'Calculator Cinta', 'Website penghitung cinta yang seru!')" />
+                        <div class="p-4">
+                            <h3 class="text-lg font-semibold text-white mb-1">Calculator Cinta</h3>
+                            <p class="text-sm text-gray-300">Website pengitung cinta kita</p>
+                            <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 w-full mt-3">
+                                <a href="https://calculator-cintakita.netlify.app/" target="_blank" class="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2 text-sm rounded-md border border-purple-400 text-purple-300 hover:bg-purple-500 hover:text-white transition duration-200 text-center">
+                                    <i class="fas fa-play"></i> Demo
+                                </a>
+                                <a href="https://github.com/dfirlaapriliani/kalkulatorcinta.git" target="_blank" class="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2 text-sm rounded-md border border-purple-400 text-purple-300 hover:bg-purple-500 hover:text-white transition duration-200 text-center">
+                                    <i class="fab fa-github"></i> GitHub
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 7: MonsterMoney -->
+                    <div class="relative rounded-xl overflow-hidden border border-white/10 bg-gradient-to-br from-[#1a2238] via-[#302244] to-[#1a1a2e] backdrop-blur-md shadow-[0_6px_18px_rgba(65,60,100,0.3)] hover:shadow-[0_10px_25px_rgba(110,90,160,0.4)] transition-all duration-300 project-item hidden" data-aos="zoom-in-up">
+                        <span class="absolute top-2 left-2 z-10 flex items-center gap-1 bg-yellow-400/80 backdrop-blur-md text-black text-xs font-semibold px-2.5 py-1.5 rounded-md shadow-md border border-yellow-600 animate-pulse">
+                            <i class="fas fa-exclamation-triangle text-yellow-900"></i> Masa Perbaikan!
+                        </span>
+                        <img src="assets/9.png" alt="MonsterMoney" class="w-full h-36 object-cover cursor-pointer" onclick="openModal('assets/9.png', 'MonsterMoney', 'Website manajemen keuangan.')" />
+                        <div class="p-4">
+                            <h3 class="text-lg font-semibold text-white mb-1">MonsterMoney</h3>
+                            <p class="text-sm text-gray-300">Website Management Keuangan</p>
+                            <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 w-full mt-3">
+                                <a href="https://dfirlaapriliani.github.io/manajemen-keuangan/" target="_blank" class="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2 text-sm rounded-md border border-purple-400 text-purple-300 hover:bg-purple-500 hover:text-white transition duration-200 text-center">
+                                    <i class="fas fa-play"></i> Demo
+                                </a>
+                                <a href="https://github.com/dfirlaapriliani/manajemen-keuangan.git" target="_blank" class="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2 text-sm rounded-md border border-purple-400 text-purple-300 hover:bg-purple-500 hover:text-white transition duration-200 text-center">
+                                    <i class="fab fa-github"></i> GitHub
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 8: Listora Bijak -->
+                    <div class="rounded-xl overflow-hidden border border-white/10 bg-gradient-to-br from-[#1a2238] via-[#302244] to-[#1a1a2e] backdrop-blur-md shadow-[0_6px_18px_rgba(65,60,100,0.3)] hover:shadow-[0_10px_25px_rgba(110,90,160,0.4)] transition-all duration-300 project-item hidden" data-aos="zoom-in-up">
+                        <img src="assets/10.png" alt="Listora Bijak" class="w-full h-36 object-cover cursor-pointer" onclick="openModal('assets/10.png', 'Listora Bijak', 'Website mengelola budget belanja dengan bijak.')" />
+                        <div class="p-4">
+                            <h3 class="text-lg font-semibold text-white mb-1">Listora Bijak</h3>
+                            <p class="text-sm text-gray-300">Website Mengelola budget belanja</p>
+                            <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 w-full mt-3">
+                                <a href="https://listorabijak.netlify.app/" target="_blank" class="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2 text-sm rounded-md border border-purple-400 text-purple-300 hover:bg-purple-500 hover:text-white transition duration-200 text-center">
+                                    <i class="fas fa-play"></i> Demo
+                                </a>
+                                <a href="https://github.com/dfirlaapriliani/listora.git" target="_blank" class="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2 text-sm rounded-md border border-purple-400 text-purple-300 hover:bg-purple-500 hover:text-white transition duration-200 text-center">
+                                    <i class="fab fa-github"></i> GitHub
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Show More Button -->
+                <div class="text-center mt-12">
+                    <button id="showMoreBtn" class="px-6 py-2 rounded-lg border border-purple-400 text-purple-300 hover:bg-purple-600 hover:text-white transition">
+                        Show More
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MODAL -->
+    <div id="modal" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-[9999] flex items-center justify-center hidden" onclick="closeModal()">
+        <div class="relative max-w-2xl w-[90%] bg-gradient-to-br from-[#1a2238] to-[#0f0a1a] rounded-2xl p-6 border border-purple-500/50 shadow-[0_0_40px_rgba(147,51,234,0.3)]" onclick="event.stopPropagation()">
+            <button onclick="closeModal()" class="absolute top-3 right-3 text-white hover:text-purple-400 transition text-2xl">
+                <i class="fas fa-times"></i>
+            </button>
+            <img id="modal-img" src="" alt="" class="w-full max-h-[500px] object-contain rounded-xl mb-4" />
+            <h3 id="modal-title" class="text-xl font-bold text-white mb-2"></h3>
+            <p id="modal-desc" class="text-gray-300"></p>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="bg-black/30 backdrop-blur-md py-14 mt-16 border-t border-gray-700 text-white z-10">
+        <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-10">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 text-center md:text-left">
+                <div>
+                    <h3 class="text-2xl font-semibold text-indigo-400 mb-4">Follow Me</h3>
+                    <div class="flex justify-center md:justify-start gap-5 text-2xl">
+                        <a href="https://github.com/dfirlaapriliani" target="_blank" class="text-gray-400 hover:text-white transition-transform duration-300 hover:scale-110"><i class="fab fa-github"></i></a>
+                        <a href="https://www.linkedin.com/in/dfirla-apriliani-bb7260316/" target="_blank" class="text-gray-400 hover:text-white transition-transform duration-300 hover:scale-110"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://www.instagram.com/deefacell_/" target="_blank" class="text-gray-400 hover:text-white transition-transform duration-300 hover:scale-110"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-semibold text-indigo-400 mb-4">Quick Links</h3>
+                    <ul class="space-y-2 text-gray-400 text-base">
+                        <li><a href="index.html#home" class="hover:text-white transition-colors duration-300">Home</a></li>
+                        <li><a href="index.html#about" class="hover:text-white transition-colors duration-300">About Me</a></li>
+                        <li><a href="projects.html" class="hover:text-white transition-colors duration-300">Projects</a></li>
+                        <li><a href="contact.html" class="hover:text-white transition-colors duration-300">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-semibold text-indigo-400 mb-4">Contact Info</h3>
+                    <p class="text-gray-400 mb-1">Email:</p>
+                    <a href="mailto:dfirlaapriliani@gmail.com" class="text-gray-300 hover:text-white transition-colors duration-300 block break-all">dfirlaapriliani@gmail.com</a>
+                </div>
+            </div>
+            <div class="text-center mt-12 border-t border-gray-700 pt-6">
+                <p class="text-gray-500 text-sm">&copy; 2025 <span class="text-white">D Firla Apriliani</span>. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.11.1/tsparticles.bundle.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/projects.js"></script>
+</body>
+</html>

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact - D FIRLA APRILIANI</title>
+    <meta name="description" content="Hubungi Dfirla Apriliani untuk jasa pembuatan website profesional dan kolaborasi.">
+    <meta name="author" content="Dfirl A">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="assets/dega.png" />
+    
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+<body class="text-white font-bold overflow-x-hidden relative" data-theme="purple">
+    
+    <div id="particles-js"></div>
+
+    <!-- NAVBAR -->
+    <nav class="sticky top-0 z-50 w-full flex justify-center pt-6" data-aos="fade-down" data-aos-duration="1000">
+        <div class="flex items-center justify-between w-[90%] max-w-6xl px-6 py-3 rounded-full shadow-lg backdrop-blur-md nav-bg border">
+            <div class="flex items-center gap-2 text-xl font-bold gradient-text">
+                <img src="assets/dega.png" alt="Logo D" class="w-7 h-7 object-contain" />
+                FIRLA APRILIANI
+            </div>
+            <div class="hidden md:flex items-center gap-6">
+                <a href="index.html#home" class="nav-link gradient-text underline-anim">Home</a>
+                <a href="index.html#about" class="nav-link gradient-text underline-anim">About</a>
+                <a href="projects.html" class="nav-link gradient-text underline-anim">Project</a>
+                <a href="certificates.html" class="nav-link gradient-text underline-anim">Certificate</a>
+                <a href="skills.html" class="nav-link gradient-text underline-anim">Skill</a>
+                <a href="contact.html" class="nav-link gradient-text underline-anim active">Contact</a>
+                <div class="theme-selector">
+                    <button id="theme-toggle" class="text-xl text-white hover:text-purple-400 transition"><i class="fas fa-palette"></i></button>
+                    <div id="theme-dropdown" class="theme-dropdown">
+                        <div class="theme-option" data-theme="purple"><div class="theme-preview purple"></div><span>Purple</span></div>
+                        <div class="theme-option" data-theme="ocean"><div class="theme-preview ocean"></div><span>Ocean</span></div>
+                        <div class="theme-option" data-theme="sunset"><div class="theme-preview sunset"></div><span>Sunset</span></div>
+                        <div class="theme-option" data-theme="forest"><div class="theme-preview forest"></div><span>Forest</span></div>
+                        <div class="theme-option" data-theme="cosmic"><div class="theme-preview cosmic"></div><span>Cosmic</span></div>
+                        <div class="theme-option" data-theme="neon"><div class="theme-preview neon"></div><span>Neon</span></div>
+                    </div>
+                </div>
+                <button id="toggle-sound" class="text-xl text-white hover:text-purple-400 transition"><i id="sound-icon" class="fas fa-volume-up"></i></button>
+            </div>
+            <button id="menu-toggle" class="md:hidden text-white text-2xl menu-icon"><i class="fas fa-bars"></i></button>
+        </div>
+    </nav>
+
+    <!-- MOBILE DRAWER -->
+    <div id="drawer" class="drawer-bg">
+        <div class="flex justify-between items-center p-4 border-b" style="border-color: var(--border-color);">
+            <div class="gradient-text text-lg font-bold">Menu</div>
+            <button id="close-drawer" class="text-white"><i class="fas fa-times text-lg"></i></button>
+        </div>
+        <ul class="flex flex-col text-left pl-6 space-y-6 mt-6 text-white font-semibold">
+            <li><a href="index.html#home" class="nav-link gradient-text underline-anim">Home</a></li>
+            <li><a href="index.html#about" class="nav-link gradient-text underline-anim">About</a></li>
+            <li><a href="projects.html" class="nav-link gradient-text underline-anim">Project</a></li>
+            <li><a href="certificates.html" class="nav-link gradient-text underline-anim">Certificate</a></li>
+            <li><a href="skills.html" class="nav-link gradient-text underline-anim">Skill</a></li>
+            <li><a href="contact.html" class="nav-link gradient-text underline-anim active">Contact</a></li>
+            <li class="flex items-center gap-4">
+                <div class="theme-selector">
+                    <button id="theme-toggle-mobile" class="text-white hover:text-purple-400"><i class="fas fa-palette"></i></button>
+                    <div id="theme-dropdown-mobile" class="theme-dropdown">
+                        <div class="theme-option" data-theme="purple"><div class="theme-preview purple"></div><span>Purple</span></div>
+                        <div class="theme-option" data-theme="ocean"><div class="theme-preview ocean"></div><span>Ocean</span></div>
+                        <div class="theme-option" data-theme="sunset"><div class="theme-preview sunset"></div><span>Sunset</span></div>
+                        <div class="theme-option" data-theme="forest"><div class="theme-preview forest"></div><span>Forest</span></div>
+                        <div class="theme-option" data-theme="cosmic"><div class="theme-preview cosmic"></div><span>Cosmic</span></div>
+                        <div class="theme-option" data-theme="neon"><div class="theme-preview neon"></div><span>Neon</span></div>
+                    </div>
+                </div>
+                <button id="toggle-sound-mobile" class="text-white hover:text-purple-400"><i id="sound-icon-mobile" class="fas fa-volume-up"></i></button>
+            </li>
+        </ul>
+    </div>
+
+    <audio id="nav-sound" src="https://www.myinstants.com/media/sounds/bruh.mp3"></audio>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact" class="w-full py-12 px-4 md:px-8 lg:px-16 bg-transparent min-h-screen" data-aos="fade-up">
+        <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+            
+            <!-- Foto Kiri -->
+            <div class="relative flex justify-center items-center">
+                <div class="absolute w-60 h-60 md:w-72 md:h-72 rounded-3xl bg-gradient-to-tr from-blue-800 via-purple-600 to-transparent blur-3xl opacity-50 animate-pulse-slow -z-10"></div>
+                <div class="w-60 h-60 md:w-72 md:h-72 rounded-3xl overflow-hidden animate-float-slow relative z-10">
+                    <img src="assets/notif.png" alt="Contact Me" class="w-full h-full object-cover rounded-3xl" />
+                </div>
+            </div>
+
+            <!-- Formulir -->
+            <div>
+                <div class="mb-6 md:mb-10 pl-1" data-aos="fade-right" data-aos-duration="800">
+                    <h2 class="text-3xl md:text-4xl font-extrabold uppercase inline-block bg-gradient-to-r from-purple-500 to-blue-900 text-transparent bg-clip-text tracking-wide">
+                        CONTACT
+                        <span class="block h-[3px] w-1/3 bg-purple-500 mt-1"></span>
+                    </h2>
+                </div>
+
+                <form id="contact-form" action="https://formspree.io/f/mgvklyba" method="POST" class="space-y-5 bg-black/20 p-6 rounded-xl shadow-md backdrop-blur-md relative">
+                    
+                    <div id="loading" class="absolute inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center rounded-xl hidden z-10">
+                        <div class="animate-spin rounded-full h-8 w-8 border-4 border-t-transparent border-purple-400"></div>
+                    </div>
+
+                    <!-- Email -->
+                    <div>
+                        <label for="email" class="block mb-1 font-semibold text-white flex items-center gap-2">
+                            <i class="fas fa-envelope text-cyan-400"></i> Email
+                        </label>
+                        <input type="email" name="email" required placeholder="you@example.com" class="w-full bg-black/40 border border-cyan-400 text-white rounded-lg p-2.5 outline-none focus:ring-2 focus:ring-cyan-500" />
+                    </div>
+
+                    <!-- Subject -->
+                    <div>
+                        <label for="subject" class="block mb-1 font-semibold text-white flex items-center gap-2">
+                            <i class="fas fa-tag text-cyan-400"></i> Subject
+                        </label>
+                        <input type="text" name="subject" required placeholder="Subject" class="w-full bg-black/40 border border-cyan-400 text-white rounded-lg p-2.5 outline-none focus:ring-2 focus:ring-cyan-500" />
+                    </div>
+
+                    <!-- Message -->
+                    <div>
+                        <label for="message" class="block mb-1 font-semibold text-white flex items-center gap-2">
+                            <i class="fas fa-comment-alt text-cyan-400"></i> Message
+                        </label>
+                        <textarea name="message" required rows="4" placeholder="Write your message here..." class="w-full bg-black/40 border border-cyan-400 text-white rounded-lg p-2.5 outline-none focus:ring-2 focus:ring-cyan-500 resize-none"></textarea>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" class="w-full bg-gradient-to-r from-purple-600 to-blue-700 text-white font-semibold py-2.5 rounded-lg hover:opacity-90 transition duration-300 flex items-center justify-center gap-3">
+                        <i class="fas fa-paper-plane animate-bounce"></i>
+                        <span id="btn-text">Send</span>
+                        <span id="btn-loader" class="hidden animate-spin w-5 h-5 border-2 border-white border-t-transparent rounded-full"></span>
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Popup Notifikasi -->
+        <div id="popup" class="fixed inset-0 flex items-center justify-center bg-black/50 backdrop-blur-sm z-50 opacity-0 pointer-events-none transition-opacity duration-300 p-4">
+            <div class="relative bg-gradient-to-br from-[#0a1a2a]/90 to-[#6b46c1]/90 text-white px-8 py-6 rounded-2xl shadow-lg flex flex-col items-center gap-4 max-w-xs w-full backdrop-blur-md animate-slideIn">
+                <i class="fas fa-smile-beam text-4xl animate-pulse"></i>
+                <h3 class="text-lg font-bold text-center leading-relaxed tracking-wide px-2">
+                    Terima kasih, pesan Anda sudah terkirim!<br />Akan saya balas secepatnya 😊
+                </h3>
+                <button id="popup-ok-btn" class="mt-2 px-6 py-2 rounded-full bg-gradient-to-r from-[#0a1a2a] to-[#6b46c1] hover:from-[#6b46c1] hover:to-[#0a1a2a] transition-colors duration-300 text-white font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-purple-600">
+                    OK
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-black/30 backdrop-blur-md py-14 mt-16 border-t border-gray-700 text-white z-10">
+        <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-10">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 text-center md:text-left">
+                <div>
+                    <h3 class="text-2xl font-semibold text-indigo-400 mb-4">Follow Me</h3>
+                    <div class="flex justify-center md:justify-start gap-5 text-2xl">
+                        <a href="https://github.com/dfirlaapriliani" target="_blank" class="text-gray-400 hover:text-white transition-transform duration-300 hover:scale-110"><i class="fab fa-github"></i></a>
+                        <a href="https://www.linkedin.com/in/dfirla-apriliani-bb7260316/" target="_blank" class="text-gray-400 hover:text-white transition-transform duration-300 hover:scale-110"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://www.instagram.com/deefacell_/" target="_blank" class="text-gray-400 hover:text-white transition-transform duration-300 hover:scale-110"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-semibold text-indigo-400 mb-4">Quick Links</h3>
+                    <ul class="space-y-2 text-gray-400 text-base">
+                        <li><a href="index.html#home" class="hover:text-white transition-colors duration-300">Home</a></li>
+                        <li><a href="index.html#about" class="hover:text-white transition-colors duration-300">About Me</a></li>
+                        <li><a href="projects.html" class="hover:text-white transition-colors duration-300">Projects</a></li>
+                        <li><a href="contact.html" class="hover:text-white transition-colors duration-300">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-semibold text-indigo-400 mb-4">Contact Info</h3>
+                    <p class="text-gray-400 mb-1">Email:</p>
+                    <a href="mailto:dfirlaapriliani@gmail.com" class="text-gray-300 hover:text-white transition-colors duration-300 block break-all">dfirlaapriliani@gmail.com</a>
+                </div>
+            </div>
+            <div class="text-center mt-12 border-t border-gray-700 pt-6">
+                <p class="text-gray-500 text-sm">&copy; 2025 <span class="text-white">D Firla Apriliani</span>. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.11.1/tsparticles.bundle.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/contact.js"></script>
+</body>
+</html>

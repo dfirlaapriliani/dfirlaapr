@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Skills - D FIRLA APRILIANI</title>
+    <meta name="description" content="Skill dan teknologi yang dikuasai Dfirla Apriliani dalam web development.">
+    <meta name="author" content="Dfirl A">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="assets/dega.png" />
+    
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+<body class="text-white font-bold overflow-x-hidden relative" data-theme="purple">
+    
+    <div id="particles-js"></div>
+
+    <!-- NAVBAR -->
+    <nav class="sticky top-0 z-50 w-full flex justify-center pt-6" data-aos="fade-down" data-aos-duration="1000">
+        <div class="flex items-center justify-between w-[90%] max-w-6xl px-6 py-3 rounded-full shadow-lg backdrop-blur-md nav-bg border">
+            <div class="flex items-center gap-2 text-xl font-bold gradient-text">
+                <img src="assets/dega.png" alt="Logo D" class="w-7 h-7 object-contain" />
+                FIRLA APRILIANI
+            </div>
+            <div class="hidden md:flex items-center gap-6">
+                <a href="index.html#home" class="nav-link gradient-text underline-anim">Home</a>
+                <a href="index.html#about" class="nav-link gradient-text underline-anim">About</a>
+                <a href="projects.html" class="nav-link gradient-text underline-anim">Project</a>
+                <a href="certificates.html" class="nav-link gradient-text underline-anim">Certificate</a>
+                <a href="skills.html" class="nav-link gradient-text underline-anim active">Skill</a>
+                <a href="contact.html" class="nav-link gradient-text underline-anim">Contact</a>
+                <div class="theme-selector">
+                    <button id="theme-toggle" class="text-xl text-white hover:text-purple-400 transition"><i class="fas fa-palette"></i></button>
+                    <div id="theme-dropdown" class="theme-dropdown">
+                        <div class="theme-option" data-theme="purple"><div class="theme-preview purple"></div><span>Purple</span></div>
+                        <div class="theme-option" data-theme="ocean"><div class="theme-preview ocean"></div><span>Ocean</span></div>
+                        <div class="theme-option" data-theme="sunset"><div class="theme-preview sunset"></div><span>Sunset</span></div>
+                        <div class="theme-option" data-theme="forest"><div class="theme-preview forest"></div><span>Forest</span></div>
+                        <div class="theme-option" data-theme="cosmic"><div class="theme-preview cosmic"></div><span>Cosmic</span></div>
+                        <div class="theme-option" data-theme="neon"><div class="theme-preview neon"></div><span>Neon</span></div>
+                    </div>
+                </div>
+                <button id="toggle-sound" class="text-xl text-white hover:text-purple-400 transition"><i id="sound-icon" class="fas fa-volume-up"></i></button>
+            </div>
+            <button id="menu-toggle" class="md:hidden text-white text-2xl menu-icon"><i class="fas fa-bars"></i></button>
+        </div>
+    </nav>
+
+    <!-- MOBILE DRAWER -->
+    <div id="drawer" class="drawer-bg">
+        <div class="flex justify-between items-center p-4 border-b" style="border-color: var(--border-color);">
+            <div class="gradient-text text-lg font-bold">Menu</div>
+            <button id="close-drawer" class="text-white"><i class="fas fa-times text-lg"></i></button>
+        </div>
+        <ul class="flex flex-col text-left pl-6 space-y-6 mt-6 text-white font-semibold">
+            <li><a href="index.html#home" class="nav-link gradient-text underline-anim">Home</a></li>
+            <li><a href="index.html#about" class="nav-link gradient-text underline-anim">About</a></li>
+            <li><a href="projects.html" class="nav-link gradient-text underline-anim">Project</a></li>
+            <li><a href="certificates.html" class="nav-link gradient-text underline-anim">Certificate</a></li>
+            <li><a href="skills.html" class="nav-link gradient-text underline-anim active">Skill</a></li>
+            <li><a href="contact.html" class="nav-link gradient-text underline-anim">Contact</a></li>
+            <li class="flex items-center gap-4">
+                <div class="theme-selector">
+                    <button id="theme-toggle-mobile" class="text-white hover:text-purple-400"><i class="fas fa-palette"></i></button>
+                    <div id="theme-dropdown-mobile" class="theme-dropdown">
+                        <div class="theme-option" data-theme="purple"><div class="theme-preview purple"></div><span>Purple</span></div>
+                        <div class="theme-option" data-theme="ocean"><div class="theme-preview ocean"></div><span>Ocean</span></div>
+                        <div class="theme-option" data-theme="sunset"><div class="theme-preview sunset"></div><span>Sunset</span></div>
+                        <div class="theme-option" data-theme="forest"><div class="theme-preview forest"></div><span>Forest</span></div>
+                        <div class="theme-option" data-theme="cosmic"><div class="theme-preview cosmic"></div><span>Cosmic</span></div>
+                        <div class="theme-option" data-theme="neon"><div class="theme-preview neon"></div><span>Neon</span></div>
+                    </div>
+                </div>
+                <button id="toggle-sound-mobile" class="text-white hover:text-purple-400"><i id="sound-icon-mobile" class="fas fa-volume-up"></i></button>
+            </li>
+        </ul>
+    </div>
+
+    <audio id="nav-sound" src="https://www.myinstants.com/media/sounds/bruh.mp3"></audio>
+
+    <!-- SKILL SECTION -->
+    <section id="skill" class="pt-4 pb-8 px-4 md:px-8 lg:px-16 bg-transparent min-h-screen">
+        <div class="max-w-screen-xl mx-auto w-full lg:w-[95%]">
+            <div class="mb-8 md:mb-12 pl-2" data-aos="fade-right" data-aos-duration="1000">
+                <h2 class="text-4xl md:text-5xl font-extrabold uppercase inline-block bg-gradient-to-r from-purple-500 to-blue-900 text-transparent bg-clip-text tracking-wide">
+                    SKILL
+                    <span class="block h-[3px] w-1/2 bg-purple-500 mt-2"></span>
+                </h2>
+            </div>
+
+            <!-- Logo Slider -->
+            <div class="overflow-hidden relative w-full mt-12">
+                <div class="stack-loop flex gap-10 w-max animate-scroll-logo">
+                    <!-- Logo akan diisi oleh JavaScript -->
+                </div>
+            </div>
+
+            <!-- Skill Cards -->
+            <div class="max-w-6xl mx-auto px-4 mt-20 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                
+                <!-- Card 1 -->
+                <div class="rounded-xl border border-white/10 bg-gradient-to-br from-[#1a2238] via-[#302244] to-[#1a1a2e] backdrop-blur-md p-6 text-center hover:shadow-[0_0_30px_rgba(147,51,234,0.3)] transition-all duration-300" data-aos="zoom-in-up" data-aos-delay="100">
+                    <img src="assets/html5.png" alt="HTML5" class="w-16 h-16 mx-auto mb-3" />
+                    <h3 class="text-lg font-semibold text-white">HTML5</h3>
+                    <p class="text-sm text-gray-400 mt-2">Struktur web semantik & modern</p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="rounded-xl border border-white/10 bg-gradient-to-br from-[#1a2238] via-[#302244] to-[#1a1a2e] backdrop-blur-md p-6 text-center hover:shadow-[0_0_30px_rgba(59,130,246,0.3)] transition-all duration-300" data-aos="zoom-in-up" data-aos-delay="200">
+                    <img src="assets/css3.png" alt="CSS3" class="w-16 h-16 mx-auto mb-3" />
+                    <h3 class="text-lg font-semibold text-white">CSS3</h3>
+                    <p class="text-sm text-gray-400 mt-2">Styling responsif & animasi</p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="rounded-xl border border-white/10 bg-gradient-to-br from-[#1a2238] via-[#302244] to-[#1a1a2e] backdrop-blur-md p-6 text-center hover:shadow-[0_0_30px_rgba(234,179,8,0.3)] transition-all duration-300" data-aos="zoom-in-up" data-aos-delay="300">
+                    <img src="assets/javascript.png" alt="JavaScript" class="w-16 h-16 mx-auto mb-3" />
+                    <h3 class="text-lg font-semibold text-white">JavaScript</h3>
+                    <p class="text-sm text-gray-400 mt-2">Interaktivitas & logika web</p>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="rounded-xl border border-white/10 bg-gradient-to-br from-[#1a2238] via-[#302244] to-[#1a1a2e] backdrop-blur-md p-6 text-center hover:shadow-[0_0_30px_rgba(6,182,212,0.3)] transition-all duration-300" data-aos="zoom-in-up" data-aos-delay="400">
+                    <img src="assets/react.png" alt="React" class="w-16 h-16 mx-auto mb-3" />
+                    <h3 class="text-lg font-semibold text-white">React</h3>
+                    <p class="text-sm text-gray-400 mt-2">Library UI modern & SPA</p>
+                </div>
+
+                <!-- Card 5 -->
+                <div class="rounded-xl border border-white/10 bg-gradient-to-br from-[#1a2238] via-[#302244] to-[#1a1a2e] backdrop-blur-md p-6 text-center hover:shadow-[0_0_30px_rgba(16,185,129,0.3)] transition-all duration-300" data-aos="zoom-in-up" data-aos-delay="100">
+                    <img src="assets/tailwind.png" alt="Tailwind CSS" class="w-16 h-16 mx-auto mb-3" />
+                    <h3 class="text-lg font-semibold text-white">Tailwind CSS</h3>
+                    <p class="text-sm text-gray-400 mt-2">Utility-first styling cepat</p>
+                </div>
+
+                <!-- Card 6 -->
+                <div class="rounded-xl border border-white/10 bg-gradient-to-br from-[#1a2238] via-[#302244] to-[#1a1a2e] backdrop-blur-md p-6 text-center hover:shadow-[0_0_30px_rgba(249,115,22,0.3)] transition-all duration-300" data-aos="zoom-in-up" data-aos-delay="200">
+                    <img src="assets/node.png" alt="Node.js" class="w-16 h-16 mx-auto mb-3" />
+                    <h3 class="text-lg font-semibold text-white">Node.js</h3>
+                    <p class="text-sm text-gray-400 mt-2">Backend JavaScript runtime</p>
+                </div>
+
+                <!-- Card 7 -->
+                <div class="rounded-xl border border-white/10 bg-gradient-to-br from-[#1a2238] via-[#302244] to-[#1a1a2e] backdrop-blur-md p-6 text-center hover:shadow-[0_0_30px_rgba(139,92,246,0.3)] transition-all duration-300" data-aos="zoom-in-up" data-aos-delay="300">
+                    <img src="assets/php.png" alt="PHP" class="w-16 h-16 mx-auto mb-3" />
+                    <h3 class="text-lg font-semibold text-white">PHP</h3>
+                    <p class="text-sm text-gray-400 mt-2">Server-side scripting</p>
+                </div>
+
+                <!-- Card 8 -->
+                <div class="rounded-xl border border-white/10 bg-gradient-to-br from-[#1a2238] via-[#302244] to-[#1a1a2e] backdrop-blur-md p-6 text-center hover:shadow-[0_0_30px_rgba(236,72,153,0.3)] transition-all duration-300" data-aos="zoom-in-up" data-aos-delay="400">
+                    <img src="assets/laravel.png" alt="Laravel" class="w-16 h-16 mx-auto mb-3" />
+                    <h3 class="text-lg font-semibold text-white">Laravel</h3>
+                    <p class="text-sm text-gray-400 mt-2">Framework PHP elegan</p>
+                </div>
+
+                <!-- Card 9 -->
+                <div class="rounded-xl border border-white/10 bg-gradient-to-br from-[#1a2238] via-[#302244] to-[#1a1a2e] backdrop-blur-md p-6 text-center hover:shadow-[0_0_30px_rgba(34,211,238,0.3)] transition-all duration-300" data-aos="zoom-in-up" data-aos-delay="100">
+                    <img src="assets/docker.png" alt="Docker" class="w-16 h-16 mx-auto mb-3" />
+                    <h3 class="text-lg font-semibold text-white">Docker</h3>
+                    <p class="text-sm text-gray-400 mt-2">Kontainerisasi aplikasi</p>
+                </div>
+
+                <!-- Card 10 -->
+                <div class="rounded-xl border border-white/10 bg-gradient-to-br from-[#1a2238] via-[#302244] to-[#1a1a2e] backdrop-blur-md p-6 text-center hover:shadow-[0_0_30px_rgba(168,85,247,0.3)] transition-all duration-300" data-aos="zoom-in-up" data-aos-delay="200">
+                    <img src="assets/figma.png" alt="Figma" class="w-16 h-16 mx-auto mb-3" />
+                    <h3 class="text-lg font-semibold text-white">Figma</h3>
+                    <p class="text-sm text-gray-400 mt-2">UI/UX design tool</p>
+                </div>
+
+                <!-- Card 11 -->
+                <div class="rounded-xl border border-white/10 bg-gradient-to-br from-[#1a2238] via-[#302244] to-[#1a1a2e] backdrop-blur-md p-6 text-center hover:shadow-[0_0_30px_rgba(251,191,36,0.3)] transition-all duration-300" data-aos="zoom-in-up" data-aos-delay="300">
+                    <img src="assets/postman.png" alt="Postman" class="w-16 h-16 mx-auto mb-3" />
+                    <h3 class="text-lg font-semibold text-white">Postman</h3>
+                    <p class="text-sm text-gray-400 mt-2">API testing & development</p>
+                </div>
+
+                <!-- Card 12 -->
+                <div class="rounded-xl border border-white/10 bg-gradient-to-br from-[#1a2238] via-[#302244] to-[#1a1a2e] backdrop-blur-md p-6 text-center hover:shadow-[0_0_30px_rgba(0,255,148,0.3)] transition-all duration-300" data-aos="zoom-in-up" data-aos-delay="400">
+                    <img src="assets/flutter.png" alt="Flutter" class="w-16 h-16 mx-auto mb-3" />
+                    <h3 class="text-lg font-semibold text-white">Flutter</h3>
+                    <p class="text-sm text-gray-400 mt-2">Cross-platform mobile dev</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-black/30 backdrop-blur-md py-14 mt-16 border-t border-gray-700 text-white z-10">
+        <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-10">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 text-center md:text-left">
+                <div>
+                    <h3 class="text-2xl font-semibold text-indigo-400 mb-4">Follow Me</h3>
+                    <div class="flex justify-center md:justify-start gap-5 text-2xl">
+                        <a href="https://github.com/dfirlaapriliani" target="_blank" class="text-gray-400 hover:text-white transition-transform duration-300 hover:scale-110"><i class="fab fa-github"></i></a>
+                        <a href="https://www.linkedin.com/in/dfirla-apriliani-bb7260316/" target="_blank" class="text-gray-400 hover:text-white transition-transform duration-300 hover:scale-110"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://www.instagram.com/deefacell_/" target="_blank" class="text-gray-400 hover:text-white transition-transform duration-300 hover:scale-110"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-semibold text-indigo-400 mb-4">Quick Links</h3>
+                    <ul class="space-y-2 text-gray-400 text-base">
+                        <li><a href="index.html#home" class="hover:text-white transition-colors duration-300">Home</a></li>
+                        <li><a href="index.html#about" class="hover:text-white transition-colors duration-300">About Me</a></li>
+                        <li><a href="projects.html" class="hover:text-white transition-colors duration-300">Projects</a></li>
+                        <li><a href="contact.html" class="hover:text-white transition-colors duration-300">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-semibold text-indigo-400 mb-4">Contact Info</h3>
+                    <p class="text-gray-400 mb-1">Email:</p>
+                    <a href="mailto:dfirlaapriliani@gmail.com" class="text-gray-300 hover:text-white transition-colors duration-300 block break-all">dfirlaapriliani@gmail.com</a>
+                </div>
+            </div>
+            <div class="text-center mt-12 border-t border-gray-700 pt-6">
+                <p class="text-gray-500 text-sm">&copy; 2025 <span class="text-white">D Firla Apriliani</span>. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.11.1/tsparticles.bundle.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/skills.js"></script>
+</body>
+</html>
